@@ -1,0 +1,170 @@
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Training</title>
+    <style>
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            z-index: -1;
+            background: var(--color-darkblue);
+            background-image: linear-gradient(115deg,
+                    rgba(20, 102, 134, 0.8),
+                    rgba(155, 136, 206, 0.7)),
+                url(https://images.pexels.com/photos/260352/pexels-photo-260352.jpeg?cs=srgb&dl=bodybuilding-close-up-dumbbells-equipment-260352.jpg&fm=jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .heading {
+            background-color: rgba(63, 253, 165, 0.596);
+            box-shadow: 2px 5px 10px black;
+            border-radius: 2px;
+            padding: 30px 5px;
+            max-width: 600px;
+            margin: 10px auto;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin: 0;
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.74);
+            box-shadow: 2px 5px 10px black;
+            border-radius: 2px;
+            padding: 30px 20px;
+            max-width: 450px;
+            margin: 40px auto;
+        }
+
+        .form-control {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-control label {
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .form-control input,
+        .form-control select,
+        .form-control textarea {
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: inherit;
+            padding: 8px;
+            display: block;
+            width: 100%;
+        }
+
+        .form-control input[type="radio"] {
+            display: inline-block;
+            width: auto;
+        }
+
+        .form-control input[type="checkbox"] {
+            display: inline-block;
+            width: auto;
+        }
+
+        .form-heading {
+            text-decoration: underline;
+        }
+
+        button {
+            background-color: rgba(63, 253, 165, 0.596);
+            display: block;
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="heading">
+        <h1 id="title">Personal Training Sign-up Form</h1>
+        <p id="description">
+            <i><strong>Getting on track for a healthier you!</strong></i>
+        </p>
+    </div>
+    <form id="survey-form">
+        <div class="form-control">
+            <label for="name" id="name-label">Name</label>
+            <input type="text" id="name" placeholder="Enter Full Name" required>
+        </div>
+        <div class="form-control">
+            <label for="email" id="email-label">Email</label>
+            <input type="email" id="email" placeholder="Enter Email" required>
+        </div>
+        <div id="dropdown" class="form-control">
+            <label for="number" id="number-label">Age</label>
+            <input type="number" id="number" placeholder="Age" min="1" max="99" required>
+        </div>
+        <div class="form-control select">
+            <label for="gender" id="label-r">Gender</label>
+            <select name="Gender" id="dropdown">
+                <div id="dropdown">
+                <option disabled selected>Select One</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                </div>
+            </select>
+        </div>
+        <div class="form-control">
+            <label class="form-heading">Fitness Level</label>
+            <label for="fitness-level-1"><input type="radio" name="fitness-level" id="fitness-level-1"
+                    value="Beginner">Beginner</label>
+            <label for="fitness-level-2"><input type="radio" name="fitness-level" id="fitness-level-2"
+                    value="Intermediate">Intermediate</label>
+            <label for="fitness-level-3"><input type="radio" name="fitness-level" id="fitness-level-3"
+                    value="advanced">Advanced</label>
+        </div>
+        <div class="form-control">
+            <label class="form-heading">Personal Fitness Goals <small>(check all that apply)</small></label>
+            <label for="fitness-goal-1"><input type="checkbox" name="fitness-goal" id="fitness-goal-1"
+                    value="lose-fat" />Lose fat</label>
+            <label for="fitness-goal-2"><input type="checkbox" name="fitness-goal" id="fitness-goal-2"
+                    value="build-muscle" />Buld muscle</label>
+            <label for="fitness-goal-3"><input type="checkbox" name="fitness-goal" id="fitness-goal-3"
+                    value="get-stronger" />Get Stronger</label>
+            <label for="fitness-goal-4"><input type="checkbox" name="fitness-goal" id="fitness-goal-4"
+                    value="lean-out" />Lean out</label>
+            <label for="fitness-goal-5"><input type="checkbox" name="fitness-goal" id="fitness-goal-5"
+                    value="train-for-competition" />Train for competition</label>
+            <label for="fitness-goal-6"><input type="checkbox" name="fitness-goal" id="fitness-goal-6"
+                    value="improve-endurance" />Improve endurance</label>
+        </div>
+        <div class="form-control">
+            <label class="form-heading" for="comments">Prior health conditons/special requests?</label>
+            <textarea name="" id="comments" placeholder="Please let us know here"></textarea>
+        </div>
+        <div>
+            <button type="submit" value="submit" id="submit">Submit</button>
+        </div>
+    </form>
+</body>
+
+</html>

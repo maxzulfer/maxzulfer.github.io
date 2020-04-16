@@ -1,0 +1,28 @@
+/* 1em = 16px
+vh - height - percent of the screen 
+vw - width - percent of the screen
+*/
+/* * {
+    margin: 0px;
+} */
+.buttons{
+    margin: 3rem;
+}
+a {
+    background: green;
+    text-decoration: none;
+    padding: 1.2rem 1.5rem;
+    color: #222;
+    text-transform: uppercase;
+    margin: 0 20px;
+}
+#one {
+    border:  0.2rem solid #222;
+}
+#two {
+    outline-width: 0.2rem;
+    outline-style: solid;
+    outline-color: #222;
+    outline: o.2rem solid #222;
+    outline-offset: 10px;
+}

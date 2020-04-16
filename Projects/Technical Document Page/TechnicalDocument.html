@@ -1,0 +1,287 @@
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Document</title>
+    <style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    margin: 0;
+}
+#navbar {
+   border-right: 2px solid rgba(0, 0, 0, 0.411);
+}
+header {
+    padding: 10px;
+    margin-left: 20px;
+    font-weight: 500;
+    font-size: 30px;
+}
+article {
+    padding: 10px 10px 10px 40px;
+}
+#navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 250px; 
+  background-color: #f1f1f1;
+  height: 100%;
+}
+li a {
+  border-top: 2px solid rgba(0, 0, 0, 0.411);
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+li a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+code {
+    background-color: #f1f1f1;
+    padding: 20px ;
+}
+main {
+    margin-top: 5px;
+}
+@media (max-width: 600px) {
+    nav {
+        width: 100%;
+        overflow-y: scroll;
+        height: 300px;
+    }
+
+    main {
+        width: 100%;
+        height: auto;
+    }
+    body {
+        flex-direction: column;
+    }
+}
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <header>CSS Basics</header>
+        <ul>
+            <li><a class ="nav-link" href="#Introduction">Introduction</a></li>
+            <li><a class ="nav-link" href="#Syntax">Syntax</a></li>
+            <li><a class ="nav-link" href="#Selectors">Selectors</a></li>
+            <li><a class ="nav-link" href="#How_To">How To</a></li>
+            <li><a class ="nav-link" href="#Comments">Comments</a></li>
+            <li><a class ="nav-link" href="#Colors">Colors</a></li>
+            <li><a class ="nav-link" href="#Backgrounds">Backgrounds</a></li>
+            <li><a class ="nav-link" href="#Borders">Borders</a></li>
+            <li><a class ="nav-link" href="#Margins">Margins</a></li>
+            <li><a class ="nav-link" href="#Padding">Padding</a></li>
+        </ul>
+    </nav>
+    <main id="main-doc">
+        <Section class="main-section" id="Introduction">
+            <header>Introduction</header>
+            <article>
+                <p>
+                    CSS is a language that describes the style of an HTML document. CSS describes how HTML elements should be displayed. This tutorial will teach you CSS from basic to advanced.
+                </p>
+                <ul>
+                    <li>CSS stands for Cascading Style Sheets</li>
+                    <li>CSS describes how HTML elements are to be displayed on screen, paper, or in other media</li>
+                    <li>CSS saves a lot of work. It can control the layout of multiple web pages all at once</li>
+                    <li>External stylesheets are stored in CSS files</li>
+                </ul>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti porro, molestiae dolores aliquam animi suscipit quos atque, recusandae esse, voluptatum minus eius voluptatibus accusantium pariatur repellendus dolorum quae quam assumenda iste possimus doloribus explicabo aspernatur. Laudantium debitis hic consequatur beatae doloribus quae fugiat. Unde numquam, nemo accusamus velit modi exercitationem officia fugiat aspernatur a nulla enim aut, nostrum fugit facere? Eos cupiditate voluptates perferendis voluptatum autem est nesciunt laborum excepturi ea dolorum architecto porro praesentium quidem fugiat sequi fuga quibusdam iusto obcaecati sapiente ducimus, sed dolore optio eum laboriosam! Nulla veritatis alias quo ad quaerat fuga ab accusamus explicabo fugit.</p>
+            </article>
+        </Section>
+        <Section id="Syntax" class="main-section">
+            <header>Syntax</header>
+            <article>
+                <p>
+                    A CSS rule-set consists of a selector and a declaration block. The selector points to the HTML element you want to style. The declaration block contains one or more declarations separated by semicolons. Each declaration includes a CSS property name and a value, separated by a colon. A CSS declaration always ends with a semicolon, and declaration blocks are surrounded by curly braces.
+                </p>
+                <ul>
+                    <li>p is a selector in CSS (it points to the HTML element you want to style</li>
+                    <li>color is a property, and red is the property value</li>
+                    <li>text-align is a property, and center is the property value</li>
+                </ul>
+                <label for="code-1">Example</label>
+                <br>
+                <code id="code-1">
+                    p {
+                    color: red;
+                    text-align: center;
+                    }
+                </code>
+                <br>
+                <br>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deleniti porro, molestiae dolores aliquam animi suscipit quos atque, recusandae esse, voluptatum minus eius voluptatibus accusantium pariatur repellendus dolorum quae quam assumenda iste possimus doloribus explicabo aspernatur. Laudantium debitis hic consequatur beatae doloribus quae fugiat. Unde numquam, nemo accusamus velit modi exercitationem officia fugiat aspernatur a nulla enim aut, nostrum fugit facere? Eos cupiditate voluptates perferendis voluptatum autem est nesciunt laborum excepturi ea dolorum architecto porro praesentium quidem fugiat sequi fuga quibusdam iusto obcaecati sapiente ducimus, sed dolore optio eum laboriosam! Nulla veritatis alias quo ad quaerat fuga ab accusamus explicabo fugit.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum, dolore quaerat consectetur tempora ullam veniam nemo, nam nulla, eius modi mollitia illo totam perferendis! Sequi ipsa consectetur natus. Assumenda hic quidem magnam incidunt tempore, deserunt exercitationem officia dolores quisquam nemo explicabo voluptatibus adipisci nulla atque perspiciatis totam asperiores omnis vel, repudiandae nihil ullam sint libero, molestiae ad? Nam tempora soluta explicabo nostrum excepturi, facilis, porro, ipsam distinctio eius rem maiores assumenda fugiat nihil placeat! Est eum, consectetur debitis ipsum sit repudiandae eaque doloribus cumque repellendus, nihil quis! Et ea esse eligendi rem quod quo dolorem beatae quam, perferendis aliquid accusantium?</p>
+            </article>
+        </Section>
+            <br>
+        <Section id="Selectors" class="main-section">
+            <header>Selectors</header>
+            <article>
+                <p>
+                    CSS selectors are used to "find" (or select) the HTML elements you want to style. We can divide CSS selectors into five categories:
+                </p>
+                <ul>
+                    <li>Simple selectors (select elements based on name, id, class</li>
+                    <li>Combinator selectors (select elements based on a specific relationship between them)</li>
+                    <li>Pseudo-class selectors (select elements based on a certain state)</li>
+                    <li>Pseudo-elements selectors (select and style a part of an element)</li>
+                    <li>Attribute selectors (select elements based on an attribute or attribute value)</li>
+                </ul>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste cumque alias at dolor fugit atque tempora doloribus, molestiae id velit blanditiis est error excepturi non fugiat quasi suscipit ipsam unde dolores rerum voluptatum recusandae. Amet inventore voluptatibus, nobis magni nesciunt perspiciatis, porro explicabo deserunt vero magnam molestias ipsa possimus dignissimos laborum reiciendis maiores ab? Aspernatur voluptates eius adipisci provident laudantium repellendus aliquid. Possimus dicta, mollitia optio rem nam, asperiores perferendis maiores quisquam culpa officia alias, ipsa doloremque molestias minima laboriosam est quam? Tenetur, cumque quisquam! Dolores, dolorem cumque officia distinctio perspiciatis voluptas velit! Error non consequatur harum culpa beatae unde!</p>
+            </article>
+        </Section>
+        <Section id="How_To" class="main-section">
+            <header>How To</header>
+            <article>
+                <p>
+                    When a browser reads a style sheet, it will format the HTML document according to the information in the style sheet.
+                </p>
+                <ul>
+                    <li>External CSS</li>
+                    <li>Internal CSS</li>
+                    <li>Inline CSS</li>
+                </ul>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, voluptatibus eveniet. Nesciunt distinctio eos cum ex, sunt esse nulla laborum debitis magnam sit modi reiciendis, sint iste quasi, hic adipisci? Perferendis consectetur ex hic distinctio quisquam deserunt officiis blanditiis, incidunt dolor sunt accusamus error eligendi fuga, quibusdam ipsa placeat accusantium. Ratione doloremque voluptate itaque, distinctio impedit illo quasi odio eligendi saepe laudantium tenetur eveniet, harum quas blanditiis earum dolorem voluptatibus velit, dolor et. Ratione necessitatibus incidunt animi nihil eligendi, harum neque quaerat, obcaecati excepturi repellendus amet velit sit repudiandae doloribus mollitia ipsum recusandae modi accusamus consequuntur blanditiis sapiente hic fugit.
+                </p>
+            </article>
+        </Section>    
+        <Section id="Comments" class="main-section">
+            <header>Comments</header>
+            <article>
+                <p>
+                    Comments are used to explain the code, and may help when you edit the source code at a later date. Comments are ignored by browsers. A CSS comment starts with /* and ends with */:
+                </p>
+                <label for="code-2">Example</label>
+                <br>
+                <code id="code-2">
+                                /* This is a single-line comment */
+                                p {
+                                color: red;
+                                }
+                </code>
+                <br>
+                <br>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores iure reiciendis cum iusto, deserunt ipsum totam eveniet, harum corrupti ullam vero nisi pariatur aliquid magni mollitia ea cumque, laudantium tempora voluptatum illo sunt recusandae non. Vero blanditiis amet at possimus fugiat impedit necessitatibus accusantium cumque, recusandae iste eaque dolor. Et delectus, deleniti fugit aliquid, voluptatum doloribus maiores doloremque laudantium, corporis eligendi voluptatem saepe harum dolorem odio nobis adipisci distinctio autem. Fuga consequatur nam nesciunt nihil! Nemo consequatur eius sunt neque, a ratione eaque earum non blanditiis adipisci numquam qui aspernatur eos, necessitatibus quibusdam quasi fuga! Minus quasi consequuntur porro incidunt.</p>
+            </article>
+        </Section>    
+        <Section id="Colors" class="main-section">
+            <header>Colors</header>
+            <article>
+                <p>
+                    Colors are specified using predefined color names, or RGB, HEX, HSL, RGBA, HSLA values.
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure natus nulla facere! Sequi ullam suscipit incidunt neque officia architecto quisquam exercitationem et, perspiciatis iure hic illo cupiditate aspernatur expedita, quod eum, reprehenderit doloribus ut. Doloremque voluptatum, voluptas aliquid est alias omnis eius possimus voluptate? Ratione possimus at non est quod.
+                </p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio ipsa et veniam repellendus sequi ab accusantium. Asperiores dolore obcaecati, molestiae, quam atque delectus ipsam, nobis recusandae totam vel corporis cupiditate? Mollitia vitae consequuntur enim quia porro deleniti molestias fuga eveniet maxime, odit nostrum voluptatum accusamus corrupti nam fugit! Corrupti delectus laborum a incidunt, dolores porro nesciunt exercitationem tempore inventore, et magnam vel sed sit debitis suscipit odio quam aspernatur temporibus eum magni. Est eligendi omnis ullam, sunt, voluptates ab sit amet esse perspiciatis id blanditiis rerum assumenda ipsum totam reiciendis, ducimus praesentium provident. Pariatur commodi voluptates molestias quaerat maiores aliquam!</p>
+            </article>
+        </Section>    
+        <Section id="Backgrounds" class="main-section">
+            <header>Backgrounds</header>
+            <article>
+                <p>
+                    The CSS background properties are used to define the background effects for elements. In these chapters, you will learn about the following CSS background properties:
+                </p>
+                <ul>
+                    <li>background-color</li>
+                    <li>background-image</li>
+                    <li>background-repeat</li>
+                    <li>background-attachment</li>
+                    <li>background-position</li>
+                </ul>
+                <label for="code-3">Example</label>
+                <br>
+                <code id="code-3">
+                        body {
+                        background-color: lightblue;
+                        }
+                </code>
+                <br>
+                <br>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint nihil ipsam molestiae dolores quibusdam ex, consequatur ad aliquam eveniet voluptas porro, quam doloremque dicta. Quisquam recusandae architecto rem neque sit obcaecati autem dolorum. Mollitia sunt nam ipsam sapiente et. Quibusdam consequuntur sed ea mollitia excepturi adipisci accusantium, omnis, perspiciatis laudantium at commodi? Nihil, non doloremque cupiditate odio omnis fuga sapiente fugiat magni, saepe, ipsa suscipit unde! Distinctio, minus quaerat eius quasi nihil aliquid. Molestiae voluptatum repellat at alias praesentium aspernatur nobis culpa saepe aliquam sit quas ducimus itaque, minima modi sequi ratione repudiandae in sed quasi id excepturi eius officia.</p>
+                lorem100
+            </article>
+        </Section>    
+            <br>
+        <Section id="Borders" class="main-section">
+            <header>Borders</header>
+            <article>
+                <p>
+                    The CSS border properties allow you to specify the style, width, and color of an element's border.
+                </p>
+                <label for="code-4">Example</label>
+                <br>
+                <code id="code-4">
+                        p.dotted {border-style: dotted;}
+                </code>
+                <br>
+                <br>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aliquam quasi aspernatur obcaecati suscipit id ipsum! Mollitia magnam explicabo corrupti molestias maiores? Fugiat sequi facere sapiente, repellat minima esse nesciunt eos enim ipsa veniam, similique alias deserunt. Quis, culpa perspiciatis vel porro dignissimos mollitia expedita quos amet et iure fugiat in nam quam laborum! Eius vero a minus illum. Dolore nesciunt fugiat, dicta excepturi consequuntur, ullam tenetur minima corrupti doloribus cupiditate laudantium! Laudantium unde autem eaque suscipit eius. Aliquam, fuga tempore architecto quas, nemo quaerat incidunt reprehenderit placeat nulla consequatur minima quidem. Maiores doloremque cupiditate architecto mollitia, quidem consectetur natus nisi, quis in impedit est eligendi sapiente, voluptatem reprehenderit ipsa inventore nobis? Corporis incidunt ipsam accusamus aliquid nisi cumque officiis id quaerat tempore iste. Nobis optio consequatur ducimus illo ex dicta maiores? Pariatur amet omnis, similique ducimus sapiente in qui dicta, doloribus recusandae numquam soluta iste nobis fugiat dolorum excepturi quos, voluptatibus quae! Ipsam a accusantium perferendis quia. Eos quam eaque voluptatibus recusandae quo repudiandae rem, provident odit totam perferendis delectus eligendi? Facere voluptatem, fugit quis magnam dolores cumque provident minus dolor dolorem obcaecati repellat nemo velit eum eveniet libero minima mollitia ratione error, commodi ab enim rerum quaerat nobis.</p>
+            </article>
+        </Section>    
+        <Section id="Margins" class="main-section">
+            <header>Margins</header>
+            <article>
+                <p>
+                    The CSS margin properties are used to create space around elements, outside of any defined borders. With CSS, you have full control over the margins. There are properties for setting the margin for each side of an
+                    element (top, right, bottom, and left).
+                </p>
+                <label for="code-5">Example</label>
+                <br>
+                <code id="code-5">
+                        p {
+                        margin-top: 100px;
+                        margin-bottom: 100px;
+                        margin-right: 150px;
+                        margin-left: 80px;
+                        }
+                </code>
+                <br><br>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem veniam alias corrupti doloribus! Ut quaerat quod inventore praesentium natus, labore velit reprehenderit quae repellendus nemo cumque repudiandae expedita rerum asperiores maiores deleniti tempora! Tenetur voluptatem eius provident quasi deserunt dignissimos, ipsum similique quis labore consequatur quisquam eos ex iure repellendus alias quam, veniam numquam itaque neque! Exercitationem saepe eum sint, hic aut dolorum alias expedita neque delectus repudiandae nulla pariatur mollitia nisi, commodi incidunt, distinctio eveniet facere excepturi necessitatibus assumenda cupiditate possimus. Quasi delectus, nam nulla ea quia consectetur illum ullam, perferendis, cum doloremque eum error minus harum veritatis ipsum.
+                </p>
+            </article>
+        </Section>    
+        <Section id="Padding" class="main-section">
+            <header>Padding</header>
+            <article>
+                <p>
+                    The CSS padding properties are used to generate space around an element's content, inside of any defined borders. With CSS, you have full control over the padding. There are properties for setting the padding for each side of an
+                    element (top, right, bottom, and left).
+                </p>
+                <label for="code-6">Example</label>
+                <br>
+                <code id="code-6">
+                                        p {
+                                        margin-top: 100px;
+                                        margin-bottom: 100px;
+                                        margin-right: 150px;
+                                        margin-left: 80px;
+                                        }
+                                </code>
+            </article>
+        </Section>   
+       </main> 
+</body>
+</html>

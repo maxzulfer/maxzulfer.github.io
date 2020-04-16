@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Training Signup Form</title>
+    <style>
+       body {
+           color: white;
+           line-height: auto;
+           font-family: 'Courier New', Courier, monospace;
+           font-size: 20px;
+           margin: 0px;
+       } 
+       .header {
+           text-align: center;
+       }
+       .form-group {
+           background-color: rgba(0, 102, 255, 0.555);
+           margin: 0 auto 1.5rem auto;
+       }
+       .heading-two {
+           text-decoration: underline;
+       }
+       /* background-image */
+       body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  background: var(--color-darkblue);
+  background-image: linear-gradient(
+      115deg,
+      rgba(98, 20, 134, 0.8),
+      rgba(136, 136, 206, 0.7)
+    ),
+    url(https://images.pexels.com/photos/260352/pexels-photo-260352.jpeg?cs=srgb&dl=bodybuilding-close-up-dumbbells-equipment-260352.jpg&fm=jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+    </style>
+</head>
+<body>
+    <div class="form"></div>
+            <!-- Title/header -->
+        <div class="header">
+            <h1 id="title">Personal Training Signup Form</h1>
+                <p id="description"><i>Getting on track for a healthier you!
+                </i></p>
+        </div>
+    <br>
+    <br>
+        <!-- This is the form section -->
+        <div class="form-group">
+            <h2 class="heading-two" id="about you">About You</h2>
+        <form id="survey-form">
+        <!-- Name form -->
+        <div class="name-form">
+            <label for="name">Full Name</label>
+    <br>
+                    <input id="name" type="text" placeholder="Input your full name">
+        </div>
+    <br>
+    <br>
+        <!-- Email form -->
+        <div class="email-form">
+                <label for="email">Email</label>
+    <br>
+                    <input type="email" name="" id="email" placeholder="Input your email">
+        </div>
+    <br>
+    <br>
+        <!-- Age form -->
+        <div class="age-form">
+                <label for="age">Age</label>
+    <br>
+                    <input type="number" name="" id="age" placeholder="Input your age" min="10">
+        </div>
+    <br>
+    <br>
+        <!-- Gender dropbox -->
+        <div class="gender">
+                <label id="gender" for="Gender">Gender</label>
+    <br>
+                    <select name="" id="gender">
+                        <option disabled selected gender>Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Female">Other</option>
+                    </select>
+        </div>
+    <br>
+    <br>
+        <!-- Fitness level checkbox -->
+        <div class="fitness-level">
+                    <h2 class="heading-two" id="fitness-level">Fitness Level</h2>
+                <label><input type="radio" name="fitness-level" id="advanced" value="advanced">Advanced</label>
+                <br>
+                <label><input type="radio" name="fitness-level" id="intermediate" value="intermediate">Intermediate</label>
+                <br>
+                <label><input type="radio" name="fitness-level" id="beginner" value="beginner">Beginner</label>
+        </div>
+    <br>
+    <br>
+    <br>
+        <!-- Personal fitness goal  -->
+        <div class="fitness-goal">
+                    <h2 class="heading-two">Personal Fitness Goals</h2>
+                <label><input type="checkbox" name="fitness-goal" id="lose-fat" value="lose-fat">Lose fat</label>
+    <br>
+                <label><input type="checkbox" name="fitness-goal" id="build-muscle" value="build-muscle">Build muscle</label>
+    <br>
+                <label><input type="checkbox" name="fitness-goal" id="get-stronger" value="get-stronger">Get stronger</label>
+    <br>
+                <label><input type="checkbox" name="fitness-goal" id="lean-out" value="lean-out">Lean out</label>
+    <br>
+                <label><input type="checkbox" name="fitness-goal" id="train-for-competition" value="train-for-competition">Train for competition</label>
+    <br>
+                <label><input type="checkbox" name="fitness-goal" id="improve-endurance" value="improve-endurance">Improve endurance</label>
+    <br>
+
+        
+        </div>             
+    <br>
+    <br>
+
+        <!-- Extra Comments Section -->
+        <div class="comments">
+            <label for="comments">Prior health conditions/special requests?</label>
+    <br>
+                <textarea name="" id="comments" cols="60" rows="10" placeholder="Please let us know here!">
+                </textarea>
+        </div>
+        </form>
+    <br>
+        <!-- Submit Button -->
+            <div class="submit">
+        <button type="submit" id="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

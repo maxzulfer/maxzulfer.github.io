@@ -1,0 +1,120 @@
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/0b8e032f35.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max's Personal Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+        @import url('https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap');
+        body {
+           font-family: 'Roboto Mono', monospace; 
+           background-color: #5BC0BE; 3A506B 0B132B
+           margin: 0;
+        }
+            @media (max-width: 550px ){
+  h1 {
+    font-size: 1.25em;
+  }
+}
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        line-height: 50px;
+        
+    }
+    nav {
+        background-color: rgba(11, 19, 43, 0.897);
+        padding: 20px;
+        position: fixed;
+        top: 0;
+        overflow: hidden;
+        width: 100%;
+    }
+    #heading-1 {
+        background-color: #5BC0BE;
+        padding: 40px;        
+}
+    footer {
+        background-color: black;
+        color: white;
+        padding-left: 10px;
+    }
+    a {
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        padding: 20px;
+        background-color: #5BC0BE;
+        padding: 10px 20px;
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.384);
+    }
+    #welcome-section {
+        text-align: center;
+        height: 100vh;
+        padding-top: 350px;
+        font-size: 30px;
+        background-image: url(https://images.pexels.com/photos/965345/pexels-photo-965345.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940);
+    }
+    h2 {
+        text-align: center;
+    }
+    ul {
+        list-style: none;
+    }
+    #Socials {
+        text-align: center;
+    }
+    i {
+        width: 40px;
+    }
+    #projects {
+        background-color: rgba(11, 19, 43, 0.74);
+        color: white;
+    }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <a href="#About">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#Socials">Socials</a>
+    </nav>
+    <section id="welcome-section">
+        <div id="heading-1">
+        <h1 style="text-shadow: 10px 10px 10px rgba(0, 0, 0, 0.295);">Hello!</h1>
+        <p id="About">My name is Max Zulfer <i class="fab far fa-smile-beam"></i></p>
+        <p>and I am a new software engineer</p>
+        </div>
+    </section>
+    <section id="projects">
+        <div class="project-tile">
+            <h2>Projects</h2>
+            <p style="text-align: center;">
+                here are some projects i've completed...
+            </p>
+            <ul>
+                <li><a href="https://codepen.io/MaxZ93/pen/rNVZeWE">Form Sheet</a></li>
+                <li><a href="https://codepen.io/MaxZ93/pen/PoqdeRz">Toggle Button</a></li>
+            </ul>
+        </div>
+    </section>
+    <section id="Socials">
+        <h2>Social Media</h2>
+        <p>Follow me on my socials!!</p>
+            <div>
+                <a id="profile-link" href="https://twitter.com" target="_blank"><i class="fab fab fa-twitter"></i></a>
+                <a id="profile-link" href="https://facebook.com" target="_blank"><i class="fab fab fa-facebook"></i></a>
+                <a id="profile-link" href="https://github.com" target="_blank"><i class="fab fab fa-github"></i></a>
+                <a id="profile-link" href="https://instagram.com" target="_blank"><i class="fab fab fa-instagram"></i></a>
+            </div>
+    </section>
+
+    <footer>Max made it</footer>
+
+</body>
+</html>

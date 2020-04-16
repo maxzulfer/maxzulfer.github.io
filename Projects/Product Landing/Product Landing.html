@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Merriweather:400,600&display=swap'); 
+    @media (max-width: 550px ){
+  h1 {
+    font-size: 1.25em;
+  }
+}
+#header-img {
+    width: 10%;
+    background-color: rgba(0, 255, 255, 0);
+    margin-left: 20px;
+}
+* {
+    box-sizing: border-box;
+    background-color: white;
+}
+h1, h2 {
+    text-shadow: 2px 5px 8px rgba(0, 0, 0, 0.452);
+    text-align: center;
+}
+#h1 {
+    padding-top: 10%;
+}
+body {
+    margin: 0 auto;
+    font-family: 'Merriweather', serif;
+}
+p {
+    line-height: 40px;
+    padding: 30px;
+    background-color: rgba(226, 223, 43, 0.178);
+    border-radius: 50%;
+}
+header {
+    margin-top: 0px;
+    width: 100%;
+    position: fixed;
+}
+#logo {
+    text-align: center;
+    background-color: rgba(43, 168, 226, 0.342);
+    max-width: 700px;
+    margin: 70px auto;
+    border-radius: 20px;
+    box-shadow: 1px 5px 6px 4px rgba(0, 0, 0, 0.322);
+}
+img {
+    max-width: 100%;
+}
+.container {
+    display: flex;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-top: 25px;
+    justify-content: center;
+}
+#nav-bar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    background-color: rgba(240, 248, 255, 0);
+}
+.nav-link {
+    color: black;
+    background-color: rgba(43, 168, 226, 0.719);
+    box-shadow: 4px 4px 4px rgba(43, 168, 226, 0.699);
+    display: inline-block;
+    font-family: inherit;
+    text-decoration: none;
+    margin: 0 20px;
+    padding: 5px 20px 5px 20px;
+    outline: 2px solid;
+    transition: all 0.1s ease;
+}
+#about {
+    margin-top: 15px;
+}
+.nav-link:active {
+    box-shadow: 0 0 0 rgba(43, 168, 226, 0.699);
+    transform: translate(2px, 2px);
+}
+.btn {
+    background-color: rgba(43, 168, 226, 0.342);
+    color: black;
+    display: inline-block;
+    box-shadow: 4px 4px 4px rgba(43, 168, 226, 0.185);
+    margin: 0 20px;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: inherit;
+    transition: all 0.1s ease;
+}
+.btn:active {
+    box-shadow: 0 0 0 rgba(43, 168, 226, 0.185);
+    transform: translate(2px, 2px);
+}
+/* Features Section */
+.feature {
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.295);
+    width: 33.33%;
+    margin: 20px 1.66%;
+    padding: 10px;
+    text-align: center;
+}
+.feature h2 {
+    text-align: center;
+    font-size: 24px;
+}
+.feature p {
+    text-align: center;
+    line-height: 25px;
+}
+/* footer styling */
+footer {
+    background-color: rgba(43, 168, 226, 0.185);
+    margin-top: 20px;
+    padding: 20px;
+
+}
+form {
+    background-color: rgba(226, 223, 43, 0.178);
+    border-radius: 10px;
+    padding: 30px 200px 30px 200px;
+    font-family: inherit;
+}
+#submit {
+    box-shadow: 4px 4px 4px rgba(43, 168, 226, 0.185);
+    border-radius: 5px;
+    font-family: inherit;
+    transition: all 0.1s ease;
+}
+
+    </style>
+</head>
+<body>
+    
+<header id="header">
+<img id="header-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQfcHxwSxugNOSpySuy9oPlDvlzjK_MWQsR_8OzSZiF2IZPOJxz" alt="logo">    
+<section id="about">
+    <nav id="nav-bar">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#unboxing" class="nav-link">Unboxing</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+</section>
+
+</header>    
+        <!-- <div id="logo">
+    <img src="data:image/png;base64,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 " alt="brand logo">
+</div> -->
+<!-- Header -->
+<div class="container">
+    <div id="h1">
+        <h1 style="text-align: left;">Kala Ukulele</h1>
+        <p style="text-indent: 50px;"> Kala Ukulele, known for high-quality instruments, is the most recognized and sought-after ukulele brand in the world.
+        Kala ukuleles are the instrument of choice for schools - more people learn to play on a Kala than any other ukulele
+        brand.</p>
+      <a class="btn" href="https://www.amazon.com/Official-Kala-Ukulele-Soprano-Mahogany/dp/B01F543PAW/ref=sr_1_5?crid=2FZUPFJQFAI3E&dchild=1&keywords=ukulele&qid=1584825030&s=musical-instruments&sprefix=uk%2Cmi%2C191&sr=1-5&th=1">Buy Link</a>
+    </div>
+</div>
+<div class="container">
+    <img src="https://images-na.ssl-images-amazon.com/images/I/81TVHSvjgfL._AC_SL1500_.jpg" alt="Kala Ukulele">
+</div>
+
+<br>
+<br>
+<br>
+<!-- Features Section -->
+<section id="features">
+    <h2>Features</h2>
+    <div class="container">
+        <div class="feature">
+            <label for="culture"> <img src="https://m.media-amazon.com/images/S/aplus-media/vc/aff81333-b610-443a-923a-3e4061b3971a._CR354,1517,3541,3541_PT0_SX300__.jpg" alt=""></label>
+            <h2 id="culture">Kala Culture</h2>
+            <p>Nestled between Northern California's treasured Redwoods and its coastal waters, our hometown, Petaluma, is a harbor to
+            an eclectic mix of creativity and culture. Since first planting our roots in 2005, Kala has grown to become the most
+            recognizable ukulele brand in the world.</p>
+        </div>
+        <div class="feature">
+            <label for="lifestyle"> <img src="https://m.media-amazon.com/images/S/aplus-media/vc/d0f799a8-a38c-4c21-a250-ad8b97bd291d._CR171,375,3753,3753_PT0_SX300__.jpg" alt=""></label>
+            <h2 id="lifestyle">Kala Lifestyle</h2>
+            <p>Kala ukuleles have seen the tops of mountains, sat in sandy beaches, floated down rivers and sung under the stars. They
+            are played in classrooms, neighborhoods and iconic music venues. More than just an instrument, they are an extension of
+            you.</p>
+        </div>
+        <div class="feature">
+            <label for="quality"> <img src="https://m.media-amazon.com/images/S/aplus-media/vc/004b6f5c-d927-41bd-b079-095158e86979._CR501,47,3440,3440_PT0_SX300__.jpg" alt=""></label>
+            <h2 id="quality">Kala Quality</h2>
+            <p>Quality craftsmanship, amazing tone, and the largest selection of models anywhere, makes Kala the industry leader of the
+            modern ukulele movement for more than a decade. We value our players and have earned their trust by providing them with
+            affordable, easy-to-play instruments that help them grow as musicians.</p>
+        </div>
+    </div>
+</section>
+<br>
+<br>
+<br>
+<!-- unboxing -->
+<section id="unboxing">
+    <h2>Unboxing</h2>
+    <div class="container">
+        <iframe id="video" width="1120" height="630" src="https://www.youtube.com/embed/zE5BnP5GyL4" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</section>
+<br>
+<br>
+<br>
+<!-- Pricing -->
+<section id="contact">
+    <h2>Contact Us</h2>
+    <div class="container">
+        <form id="form" action="https://www.freecodecamp.com/email-submit">
+            <input type="email" id="email" name="email" placeholder="enter your email here..." required>
+            <input type="submit" id="submit" placeholder="Submit"></input>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <!-- Add Icon Here -->
+</footer>
+</body>
+</html>
