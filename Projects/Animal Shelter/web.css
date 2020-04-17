@@ -93,7 +93,9 @@ header a:hover {
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.815);
 }
 #boxes .container {
-    display: flex;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    justify-content: center;
 }
 .box img {
     width: 100%;
@@ -172,4 +174,25 @@ footer p {
     font-size: 10px;
 }
 
-@
+@media only screen and (max-width: 600px) {
+    #boxes .container {
+        display: block;
+    }
+    #pre-footer a {
+        /* border-left: 1px solid white;
+        border-right: 1px solid white;
+        padding: 3px; */
+        display: block;
+    }
+    header li {
+        display: block;
+        float: left;
+        width: 100%;
+    }
+    #showcase {
+        padding-top: 200px;
+    }
+    nav {
+        margin-bottom: 10px;
+    }
+}
