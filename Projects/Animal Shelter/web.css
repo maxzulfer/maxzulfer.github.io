@@ -87,9 +87,25 @@ header a:hover {
 #boxes {
     text-align: center;
     background-color: #35424a;
-    width: 80%;
-    margin: 15px auto;
+    /* width: 90%; */
+    /* margin: 15px auto; */
+    /* border-radius: 8px; */
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.815);
+}
+#boxes .container {
+    display: flex;
+}
+.box img {
+    width: 100%;
+    height: auto;
+
+}
+.container .box {
+    background-color: #e0623f8f;
     border-radius: 8px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.925);
+    padding: 5px;
+    margin: 10px;
 }
 
 /* Form */
@@ -155,3 +171,5 @@ footer p {
     padding: 7px;
     font-size: 10px;
 }
+
+@

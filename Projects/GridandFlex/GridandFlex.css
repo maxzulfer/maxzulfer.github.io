@@ -1,0 +1,17 @@
+#box-container {
+    height: 500px;
+    display: flex; /* This makes it possible to align any children of that element into rows or columns */
+    flex-direction: row-reverse;
+}
+
+#box-1 {
+    background-color: dodgerblue;
+    width: 50%;
+    height: 50%;
+}
+
+#box-2 {
+    background-color: orangered;
+    width: 50%;
+    height: 50%;
+}
