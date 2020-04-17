@@ -19,7 +19,12 @@ ul {
     margin: 0;
     padding: 0;
 }
-
+button {
+    height: 25px;
+    width: 60px;
+    border-radius: 3px;
+    border: none;
+}
 
 /* Header */
 header {
@@ -105,6 +110,12 @@ header a:hover {
 }
 .checkbox {
     font-size: 10px;
+}
+#newsletter input[type="text"] {
+    height: 20px;
+}
+#newsletter input[type="email"] {
+    height: 20px;
 }
 
 /* Pre footer */
