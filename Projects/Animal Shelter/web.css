@@ -24,6 +24,7 @@ ul {
     width: 60px;
     border-radius: 3px;
     border: none;
+    cursor: pointer;
 }
 
 /* Header */
@@ -86,6 +87,10 @@ header a:hover {
     border: none;
     font-size: 17px;
     background-color: #676b6d;
+    cursor: pointer;
+}
+#search-btn:hover {
+    background-color: rgb(100, 98, 98);
 }
 
 /* Showcase */
@@ -155,6 +160,7 @@ header a:hover {
 #newsletter input[type="email"] {
     height: 20px;
 }
+
 
 /* Pre footer */
 #pre-footer {
