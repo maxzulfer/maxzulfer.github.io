@@ -22,3 +22,5 @@ console.log(findLongestWordLengthAlt('Ready to start building polished websites 
 
 
 
+
+
