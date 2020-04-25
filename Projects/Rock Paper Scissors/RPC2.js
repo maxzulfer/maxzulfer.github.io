@@ -19,9 +19,6 @@ let playerScore = 0;
 let playerChoice;
 let computerChoice;
 
-console.log('Round: ' + round)
-console.log('Computer Score: ' + computerScore)
-console.log('Player Score: ' + playerScore)
 
 // generates randon computer choice
 const computerChoiceGen = () => {
@@ -36,7 +33,6 @@ const computerChoiceGen = () => {
 }
 
 computerChoiceGen();
-console.log('computer choice: ' + computerChoice)
 
 
 const playerChoiceGen = (selection) => {
@@ -49,65 +45,61 @@ const playerChoiceGen = (selection) => {
     }
 }
 
-playerChoiceGen(2)
-console.log('player choice: ' + playerChoice)
+playerChoiceGen(1)
 
-// this still needs a tie function
+
+// determines winner
 const winner = () => {
-    if (playerChoice === 'rock' && computerChoice === 'scissors') {
-        console.log('You Win!')
-        playerScore += 1
-        round += 1
+    if (playerChoice === 'rock' && computerChoice === 'scissors' || playerChoice === 'paper' && computerChoice === 'rock' || playerChoice === 'scissors' && computerChoice === 'paper') {
+        playerScore += 1;
+        round += 1;
+        console.log('You Win!');
+    } else if (playerChoice === 'rock' && computerChoice === 'rock' || playerChoice === 'paper' && computerChoice === 'paper' || playerChoice === 'scissors' && computerChoice === 'scissors') {
+        console.log('Tie')
     } else {
-        console.log('You Lost ):')
-        computerScore += 1
-        round +=1 
-    } if (playerChoice === 'paper' && computerChoice === 'rock') {
-        console.log('You Win!')
-        playerChoice += 1
-        round += 1
-    } else {
-        console.log('You Lost ):')
-        computerScore += 1
-        round += 1
-    } if (playerChoice === 'scissors' && computerChoice === 'paper') {
-        console.log('You Win!')
-        playerScore += 1
-        round += 1
-    } else {
-        console.log('You Lost')
-        computerScore += 1
-        round += 1
+        computerScore += 1;
+        round += 1; 
+        console.log('You Lost ):');
     }
 }
 
-winner()
+// const gameEnd = () => {
+//     if (computerScore === 5 && playerScore < 5) {
+//         console.log('YOU LOST THE MATCH ):')
+//         round = 0
+//         computerScore = 0
+//         playerScore = 0
+//     } else if (playerScore === 5 && computerScore < 5) {
+//         console.log('YOU WON THE MATCH!')
+//         round = 0
+//         computerScore = 0
+//         playerScore = 0
+//     } else if (playerScore === 5 && computerScore === 5) {
+//         console.log('DRAW!')
+//         round = 0
+//         computerScore = 0
+//         playerScore = 0
+//     }
+// }
 
-const gameEnd = () => {
-    if (computerScore === 5 && playerScore < 5) {
-        console.log('YOU LOST THE MATCH ):')
-        round = 0
-        computerScore = 0
-        playerScore = 0
-    } else if (playerScore === 5 && computerScore < 5) {
-        console.log('YOU WON THE MATCH!')
-        round = 0
-        computerScore = 0
-        playerScore = 0
-    } else if (playerScore === 5 && computerScore === 5) {
-        console.log('DRAW!')
-        round = 0
-        computerScore = 0
-        playerScore = 0
-    }
-}
+// gameEnd()
 
-gameEnd()
 
 // reset button
-let resetBtn = document.getElementById('resetBtn').onclick = reset = () => {
-    round = 0
-    computerScore = 0
-    playerScore = 0
-}
-    
+
+// let reset = document.getElementById('resetBtn');
+// reset.addEventListener('click', function resetFunc() {
+//     document.getElementById('').innerHTML = 0
+//     document.getElementById('').innerHTML = 0
+//     document.getElementById('').innerHTML = 1
+//     round = 1
+//     computerScore = 0
+//     playerScore = 0
+// })
+
+console.log('Round: ' + round)
+console.log('Computer Score: ' + computerScore)
+console.log('Player Score: ' + playerScore)
+console.log('computer choice: ' + computerChoice)
+console.log('player choice: ' + playerChoice)
+winner()
