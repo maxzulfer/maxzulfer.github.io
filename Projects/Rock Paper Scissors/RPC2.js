@@ -10,6 +10,7 @@ console.log('You will be playing against the computer. First one to five wins. G
 console.log('1 = Rock')
 console.log('2 = Paper')
 console.log('3 = Scissors')
+console.log('-------------------------------------')
 
 let round = 1;
 
@@ -19,6 +20,7 @@ let playerScore = 0;
 let playerChoice;
 let computerChoice;
 
+let outcome;
 
 // generates randon computer choice
 const computerChoiceGen = () => {
@@ -31,7 +33,6 @@ const computerChoiceGen = () => {
         computerChoice = 'scissors'
     }
 }
-
 computerChoiceGen();
 
 
@@ -44,24 +45,31 @@ const playerChoiceGen = (selection) => {
         playerChoice = 'scissors'
     }
 }
-
 playerChoiceGen(1)
 
 
 // determines winner
 const winner = () => {
     if (playerChoice === 'rock' && computerChoice === 'scissors' || playerChoice === 'paper' && computerChoice === 'rock' || playerChoice === 'scissors' && computerChoice === 'paper') {
-        playerScore += 1;
-        round += 1;
-        console.log('You Win!');
+        outcome = 'You Win!';
     } else if (playerChoice === 'rock' && computerChoice === 'rock' || playerChoice === 'paper' && computerChoice === 'paper' || playerChoice === 'scissors' && computerChoice === 'scissors') {
-        console.log('Tie')
+        outcome = 'Tie'
     } else {
-        computerScore += 1;
-        round += 1; 
-        console.log('You Lost ):');
+        outcome = 'You Lost ):';
     }
 }
+winner()
+
+const scoring = () => {
+    if (outcome === 'You Win!') {
+        playerScore++;
+        round++;
+    } else {
+        computerScore++;
+        round++;
+    }
+}
+scoring()
 
 // const gameEnd = () => {
 //     if (computerScore === 5 && playerScore < 5) {
@@ -102,4 +110,5 @@ console.log('Computer Score: ' + computerScore)
 console.log('Player Score: ' + playerScore)
 console.log('computer choice: ' + computerChoice)
 console.log('player choice: ' + playerChoice)
-winner()
+console.log(outcome)
+
