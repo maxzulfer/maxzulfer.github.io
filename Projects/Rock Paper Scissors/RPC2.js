@@ -10,7 +10,7 @@ console.log('You will be playing against the computer. First one to five wins. G
 console.log('1 = Rock')
 console.log('2 = Paper')
 console.log('3 = Scissors')
-console.log('-------------------------------------')
+console.log('---------------------------------------------')
 
 let round = 1;
 
