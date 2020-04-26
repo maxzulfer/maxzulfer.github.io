@@ -13,34 +13,32 @@ let addBtn = document.getElementById('btn 2');
 let zeroButton = document.getElementById('zeroBtn');
 
 
-
+// buttons
 lowerBtn.onclick = function() {
     count--;
     mainCount.innerHTML = count;
+    if (count < 0) {
+        document.getElementById('count').style = 'Color: red'
+    }
 };
-
 addBtn.onclick = function() {
     count++;
     mainCount.innerHTML = count;
+    if (count > 0) {
+        document.getElementById('count').style = 'Color: green'
+    }
 }
 zeroButton.onclick = function() {
     count = 0;
     mainCount.innerHTML = count;
-}
-
-console.log(count)
-
-
-const colorChange = () => {
-    if (count.value < 0) {
-        document.getElementById('count').style = 'Color: red'
-    } else if (count.value > 0) {
-        document.getElementById('count').style ='Color: green'
-    } else {
+    if (count === 0) {
         document.getElementById('count').style = 'Color: black'
     }
 }
-colorChange()
+
+console.log(countColor)
+
+
 
 
 
