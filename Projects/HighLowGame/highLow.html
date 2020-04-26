@@ -4,14 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="highLow.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>High Low Game</title>
 </head>
 <body>
-    <h1>High - Low</h1>
-    <h3>Rules</h3>
-    <p>Try and guess the correct number between 0 and 10. Good luck!</p>
-    <input type="text" placeholder="input number here">
-    <button type="submit">Submit</button>
+    <div class="container">
+        <h1>High - Low</h1>
+        <div id='rules'>
+            <h3>Rules</h3>
+            <p>Try and guess the correct number between 0 and 10. Good luck!</p>
+        <form action="">
+            <input id="input" type="text" placeholder="input number here...">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 <script src="highLow.js"></script>
 </html>
