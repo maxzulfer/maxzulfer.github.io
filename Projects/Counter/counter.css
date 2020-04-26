@@ -1,0 +1,22 @@
+.container {
+    display: grid;
+    text-align: center;
+    border: 1px solid black;
+    padding: 50px;
+    margin: auto;
+}
+#count {
+    font-size: 60px;
+    color: green;
+}
+button {
+    background-color: rgb(138, 138, 255);
+    color: white;
+}
+button:active {
+    transform: scale(1.1);
+    color: black;
+}
+button:focus {
+    outline: none;
+}
