@@ -24,6 +24,9 @@ body {
     margin-top: 20px;
     box-shadow: 20px 2px 100px 1px rgba(255,255,255,0.44);
 }
+.moon:hover {
+    box-shadow: 20px 2px 50px 1px rgba(255, 255, 255, 0.897);
+}
 .half-moon {
     width: 200px;
     height: 200px;
@@ -32,6 +35,10 @@ body {
     margin-left: 750px;
     margin-top: 30px;
     box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.87);
+}
+.half-moon:hover {
+    transform: translateX(-80px);
+    transition: ease-in-out 4s;
 }
 /* eye 1 */
 .outer-eye1 {
@@ -50,6 +57,14 @@ body {
     margin-top: 200px;
     border-radius: 50%;
 }
+.inner-eye1 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-left: 406px;
+    margin-top: 225px;
+    background-color: rgb(0, 54, 3);
+}
 /* eye 2 */
 .outer-eye2 {
     background-color: white;
@@ -67,4 +82,13 @@ body {
     margin-left: 390px;
     margin-top: 370px;
     border-radius: 50%;
+}
+.inner-eye2 {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-left: 420px;
+    margin-top: 400px;
+    background-color: rgb(0, 54, 3);
+    z-index: 1;
 }
