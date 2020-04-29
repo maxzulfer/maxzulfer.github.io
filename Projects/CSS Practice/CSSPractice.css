@@ -3,7 +3,42 @@
 }
 body {
     margin: 0px;
-    background-color: black;
+    background-color: rgb(0, 0, 0);
+}
+/* Galaxy */
+.ring {
+    width: 110px;
+    height: 20px;
+    background-color: rgb(233, 138, 29);
+    opacity: 50%;
+    border-radius: 50%;
+    margin-left: 123px;
+    margin-top: 168px;
+    transform: rotate(-30deg);
+    box-shadow: 0px 0px 9px 5px rgb(230, 140, 37);
+}
+.ring-2 {
+    width: 140px;
+    height: 20px;
+    background-color: rgb(29, 158, 233);
+    opacity: 50%;
+    border-radius: 50%;
+    margin-left: 110px;
+    margin-top: 168px;
+    transform: rotate(-30deg);
+    box-shadow: 0px 0px 9px 5px rgb(37, 217, 230);
+    z-index: -1;
+}
+.black-hole {
+    width: 60px;
+    height: 60px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50%;
+    margin-left: 150px;
+    margin-top: 150px;
+    transform: rotate(-30deg);
+    box-shadow: 0px 0px 9px 3px rgb(230, 140, 37);
+    z-index: 1;
 }
 /* Shooting Star */
 .shooting-star {
@@ -22,8 +57,8 @@ body {
     
 }
 @keyframes shooting-star {
-    from {margin-left: 1100px; margin-top: 30px;}
-    to {margin-right: 0px;}
+    0% {margin-left: 1100px; margin-top: 30px; opacity: 0%;}
+    100% {margin-right: 0px;}
 }
 /* Stars */
 .star-2 {
@@ -227,9 +262,6 @@ body {
     margin-top: 20px;
     box-shadow: 20px 2px 100px 1px rgba(255,255,255,0.44);
 }
-.moon:hover {
-    box-shadow: 20px 2px 50px 1px rgba(255, 255, 255, 0.897);
-}
 .half-moon {
     width: 200px;
     height: 200px;
@@ -238,6 +270,7 @@ body {
     margin-left: 750px;
     margin-top: 30px;
     box-shadow: 1px 2px 5px 1px rgba(0, 0, 0, 0.87);
+    transition: 1.5s;
 }
 .half-moon:hover {
     transform: translateX(-80px);
@@ -280,7 +313,7 @@ body {
     animation-duration: 2s;
     animation-delay: 2s;
     animation-iteration-count: infinite;
-    animation-direction: alternate;
+    animation-direction: alternate-reverse;
 }
 /* eye 2 */
 .outer-eye2 {
@@ -322,11 +355,11 @@ body {
     animation-duration: 2s;
     animation-delay: 2s;
     animation-iteration-count: infinite;
-    animation-direction: alternate;
+    animation-direction: alternate-reverse;
 }
 @keyframes eye-movement {
-    from {margin-left: 430px;}
-    to {margin-left: 460px;}
+    0% {margin-left: 430px;}
+    100% {margin-left: 460px;}
 }
 /* mouth */
 .inside {
