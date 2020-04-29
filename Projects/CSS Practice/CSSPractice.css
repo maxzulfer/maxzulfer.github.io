@@ -5,6 +5,26 @@ body {
     margin: 0px;
     background-color: black;
 }
+/* Shooting Star */
+.shooting-star {
+    width: 30px;
+    height: 3px;
+    margin-left: 10px;
+    margin-top: 300px;
+    background-color: white;
+    box-shadow: 0px 0px 20px 4px white;
+    border-radius: 50%;
+    transform: rotate(-20deg);
+    animation-name: shooting-star;
+    animation-duration: 1s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    
+}
+@keyframes shooting-star {
+    from {margin-left: 1100px; margin-top: 30px;}
+    to {margin-right: 0px;}
+}
 /* Stars */
 .star-2 {
     width: 3px;
@@ -23,6 +43,11 @@ body {
     background-color: white;
     box-shadow: 0px 0px 20px 4px white;
     border-radius: 50%;
+    animation-name: blinking;
+    animation-duration: 1s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 .star-4 {
     width: 3px;
@@ -41,6 +66,11 @@ body {
     background-color: white;
     box-shadow: 0px 0px 20px 4px white;
     border-radius: 50%;
+    animation-name: blinking;
+    animation-duration: .5s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 .star-6 {
     width: 3px;
@@ -50,6 +80,11 @@ body {
     background-color: white;
     box-shadow: 0px 0px 20px 4px white;
     border-radius: 50%;
+    animation-name: blinking;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 .star-7 {
     width: 3px;
@@ -68,6 +103,11 @@ body {
     background-color: white;
     box-shadow: 0px 0px 20px 4px white;
     border-radius: 50%;
+    animation-name: blinking;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 .star-9 {
     width: 4px;
@@ -86,6 +126,11 @@ body {
     background-color: white;
     box-shadow: 0px 0px 20px 4px white;
     border-radius: 50%;
+    animation-name: blinking;
+    animation-duration: .5s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 .star-11 {
     width: 2px;
@@ -104,6 +149,11 @@ body {
     background-color: white;
     box-shadow: 0px 0px 20px 4px white;
     border-radius: 50%;
+    animation-name: blinking;
+    animation-duration: 1s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 .star-1 {
     width: 8px;
@@ -113,8 +163,16 @@ body {
     background-color: white;
     box-shadow: 0px 0px 20px 4px white;
     border-radius: 50%;
+    animation-name: blinking;
+    animation-duration: 1s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
-
+@keyframes blinking {
+    from {box-shadow: 0px 0px 20px 4px white;}
+    to {box-shadow: 0px 0px 0px 0px white;}
+}
 /* Antenna */
 .straw1 {
     width: 20px;
@@ -218,6 +276,11 @@ body {
     margin-left: 450px;
     margin-top: 240px;
     background-color: white;
+    animation-name: eye-movement;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }
 /* eye 2 */
 .outer-eye2 {
@@ -255,6 +318,15 @@ body {
     margin-top: 410px;
     z-index: 1;
     background-color: white;
+    animation-name: eye-movement;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes eye-movement {
+    from {margin-left: 430px;}
+    to {margin-left: 460px;}
 }
 /* mouth */
 .inside {
