@@ -28,7 +28,7 @@ const currentDate = () => {
     let year = newDate.getFullYear();
 
     date = updateTime(date);
-    month = updateTime(month);
+    month = updateTime(month + 1);
     year = updateTime(year);
 
     document.getElementById('date').innerHTML = month + ' / ' + date + ' / ' + year;
