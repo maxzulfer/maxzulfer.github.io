@@ -1,1 +1,5 @@
-document.getElementById('home').innerHTML
+let home = document.getElementById('home')
+
+let homeChange = () => {
+    
+}
