@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+/* font-family: 'Roboto', sans-serif; */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: black;
+}
+.calc-btn {
+    background-color: silver;
+    color: black;
+    width: 25px;
+    height: 45px;
+    border: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+    font-size: 32px;
+    font-weight: 100;
+    padding-top: 3px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.514);
+    transition: all 0.1s ease;
+}
+.calc-btn:active {
+    transform: translate(1px, 1px);
+}
+.calc-btn:hover {
+    background-color: orange;
+}
+
+.row {
+    display: table;
+    table-layout: fixed;
+    width: 200px;
+}
+.column {
+    display: table-cell;
+}
+
+#zero {
+    width: calc(52.666666667px/3.2);
+    border-radius: 5px;
+}
+#clear {
+    width: 77.666666667px;
+}
+#display {
+    color: white;
+    text-align: right;
+    border-left: 1px solid rgb(0, 0, 0);
+    border-right: 1px solid rgb(0, 0, 0);
+    border-top: 1px solid rgb(0, 0, 0);
+    font-size: 48px;
+    background-color: #1a1a1a;
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 12px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.514);
+}
+#input-display {
+    background-color: silver;
+    text-align: right;
+    border-left: 1px solid rgb(0, 0, 0);
+    border-right: 1px solid rgb(0, 0, 0);
+    border-top: 1px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.514);
+    overflow: hidden;
+    padding: 0 5px 0 0;
+    color: black;
+}
+.operator {
+    background-color: rgb(196, 0, 0);
+    color: white;
+}
+.operator:hover {
+    background-color: black;
+}
+#equals {
+    border-radius: 5px;
+}
+#clear {
+    background-color: rgb(255, 173, 21);
+}
+#clear:hover {
+    background-color: aqua;
+}
+#calc-parent {
+    margin-left: calc(50% - 100px);
+    background-color: rgba(255, 255, 255, 0.459);
+    padding: 10px;
+    border-radius: 7px;    
+    position: absolute;
+    border:2px solid rgba(128, 0, 75, 0.644);
+}
+#calc-parent:hover {
+    border-color: #0fe9f8;
+}
