@@ -1,70 +1,108 @@
 //Grab all the buttons
-var oneBtn = document.getElementById("one");
-var twoBtn = document.getElementById("two");
-var threeBtn = document.getElementById("three");
-var fourBtn = document.getElementById("four");
-var fiveBtn = document.getElementById("five");
-var sixBtn = document.getElementById("six");
-var sevenBtn = document.getElementById("seven");
-var eightBtn = document.getElementById("eight");
-var nineBtn = document.getElementById("nine");
-var zeroBtn = document.getElementById("zero");
+let oneBtn = document.getElementById("one");
+let twoBtn = document.getElementById("two");
+let threeBtn = document.getElementById("three");
+let fourBtn = document.getElementById("four");
+let fiveBtn = document.getElementById("five");
+let sixBtn = document.getElementById("six");
+let sevenBtn = document.getElementById("seven");
+let eightBtn = document.getElementById("eight");
+let nineBtn = document.getElementById("nine");
+let zeroBtn = document.getElementById("zero");
 
-var decimalBtn = document.getElementById("decimal")
-var clearBtn = document.getElementById("clear")
+let decimalBtn = document.getElementById("decimal");
+let clearBtn = document.getElementById("clear");
 
-var displayValElement = document.getElementById("display")
+let displayValElement = document.getElementById("display");
 
-var displayVal = "0";
-var pendingVal;
-var evalStringArray = [];
+let displayVal = "0";
+let pendingVal;
+let evalStringArray = [];
 
-var calcNumBtns = document.getElementsByClassName("calc-btn-num");
-var calcOperatorBtns = document.getElementsByClassName("operator");
+let calcNumBtns = document.getElementsByClassName("calc-btn-num");
+let calcOperatorBtns = document.getElementsByClassName("operator");
 
-var updateDisplayVal = (clickObj) => {
-    var btnText = clickObj.target.innerText;
+//loop through arrays we've created. Give each a click function
+console.log(nineBtn)
+
+let updateDisplayVal = (clickObj) => {
+    let btnText = clickObj.target.innerText;
 
     if (displayVal === "0")
         displayVal = "";
 
     displayVal += btnText;
     displayValElement.innerText = displayVal;
-}
+}   
 
-//loop through arrays we've created. Give each a click function
+let performOperation = (clickObj) => {
+    let operator = clickObj.target.innerText;
+
+    switch (operator) {
+        case '+':
+            pendingVal = displayVal;
+            displayVal = 0;
+            displayValElement.innerText = displayVal;
+            evalStringArray.push(pendingVal);
+            evalStringArray.push('+')
+            break;
+
+        case '-':
+            pendingVal = displayVal;
+            displayVal = 0;
+            displayValElement.innerText = displayVal;
+            evalStringArray.push(pendingVal);
+            evalStringArray.push('-')
+            break;
+
+        case 'x':
+            pendingVal = displayVal;
+            displayVal = 0;
+            displayValElement.innerText = displayVal;
+            evalStringArray.push(pendingVal);
+            evalStringArray.push('*')
+            break;
+        
+        case '/':
+            pendingVal = displayVal;
+            displayVal = 0;
+            displayValElement.innerText = displayVal;
+            evalStringArray.push(pendingVal);
+            evalStringArray.push('/');
+            break;
+
+        case '=':
+            evalStringArray.push(displayVal);
+            let evaluation = eval(evalStringArray.join(' ')); 
+            displayVal = evaluation + '';
+            displayValElement.innerText = displayVal;
+            evalStringArray = [];        
+            break;
+
+        default:
+            break;
+    }
+}
 
 for (let i = 0; i < calcNumBtns.length; i++) {
     calcNumBtns[i].addEventListener('click', updateDisplayVal, false);
 }
-    // for (let i = 0; i < calcOperatorBtns.length; i++) {
-    //     calcOperatorBtns[i].addEventListener('click', performOperation, false);
-    // }
+for (let i = 0; i < calcOperatorBtns.length; i++) {
+    calcOperatorBtns[i].addEventListener('click', performOperation, false);
+}
 
-// define constants and variables before you use them
+clearBtn.onclick = () => { 
+    displayVal = '0';
+    pendingVal = undefined;
+    evalStringArray = [];
+    displayValElement.innerHTML = displayVal;
+}
+decimalBtn.onclick = () => {
+    if(!displayVal.includes('.'))
+        displayVal += '.';
+    displayValElement.innerText = displayVal;
+}
 const defaultResult = 0;
 let currentResult = defaultResult;
 
-//functions define code to be used in a later point in time 
-//Browsers are aware of functions before anything else. They have no order on the page
-function add(num1, num2) { // functions can access global variables 
-    const result = num1 + num2;
-    return result; // A return ends the functions execution 
-}
-function subtract(num1, num2) {
-    const result = num1 + num2;
-    return result;
-}
-function multiply(num1, num2) {
-    const result = num1 + num2;
-    return result;
-}
-function divide(num1, num2) {
-    const result = num1 + num2;
-    return result;
-}
-
-addBtn.addEventListener('click', add);
-
-console.log(defaultResult);
 
