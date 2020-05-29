@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="covid19.css">    
 </head>
 <body>
-    
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">CDC Info</a></li>
+        <li class="breadcrumb-item"><a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#27454960-ea1c-4b91-a0b6-0468bb4e6712">API</a></li>
+    </ol>
+</nav>
     <div class='container'>
         <div>
             <h1 class='text-center mt-5'>Covid 19 Live Data</h1>
@@ -29,13 +34,16 @@
         </tr>
     </tbody>
 </table>
-<br>
+
 <div id='bar-chart'></div>
 <br>
 <button onclick="refreshData()" class="btn btn-primary btn-block">
     Refresh Data
 </button>
     </div>
+<footer>
+    
+</footer>
 <script src="https://d3js.org/d3.v5.js"></script>
 <script src="covid19.js"></script>
 </body>
