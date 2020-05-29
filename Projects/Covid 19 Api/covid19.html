@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Covid 19 API</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="covid19.css">    
+</head>
+<body>
+    
+    <div class='container'>
+        <div>
+            <h1 class='text-center mt-5'>Covid 19 Live Data</h1>
+            <br><br>
+        </div>
+<table class="table table-striped">
+    <thead class='thead-dark'>
+        <tr>
+            <th scope="col">Total Cases</th>
+            <th scope="col">Total Deaths</th>
+            <th scope="col">Total Recovered</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id='data'>
+
+        </tr>
+    </tbody>
+</table>
+<br>
+<div id='bar-chart'></div>
+<br>
+<button onclick="refreshData()" class="btn btn-primary btn-block">
+    Refresh Data
+</button>
+    </div>
+<script src="https://d3js.org/d3.v5.js"></script>
+<script src="covid19.js"></script>
+</body>
+</html>
