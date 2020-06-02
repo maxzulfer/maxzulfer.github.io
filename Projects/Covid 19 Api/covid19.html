@@ -1,50 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=, initial-scale=1.0" />
     <title>Covid 19 API</title>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="covid19.css">    
-</head>
-<body>
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">CDC Info</a></li>
-        <li class="breadcrumb-item"><a href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#27454960-ea1c-4b91-a0b6-0468bb4e6712">API</a></li>
-    </ol>
-</nav>
-    <div class='container'>
-        <div>
-            <h1 class='text-center mt-5'>Covid 19 Live Data</h1>
-            <br><br>
-        </div>
-<table class="table table-striped">
-    <thead class='thead-dark'>
-        <tr>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="covid19.css" />
+  </head>
+  <body>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html"
+            >CDC Info</a
+          >
+        </li>
+        <li class="breadcrumb-item">
+          <a
+            href="https://documenter.getpostman.com/view/10808728/SzS8rjbc?version=latest#27454960-ea1c-4b91-a0b6-0468bb4e6712"
+            >API</a
+          >
+        </li>
+      </ol>
+    </nav>
+    <div class="container">
+      <div>
+        <h1 class="text-center mt-5">Covid 19 Live Data</h1>
+        <br /><br />
+      </div>
+      <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
             <th scope="col">Total Cases</th>
             <th scope="col">Total Deaths</th>
             <th scope="col">Total Recovered</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr id='data'>
+          </tr>
+        </thead>
+        <tbody>
+          <tr id="data"></tr>
+        </tbody>
+      </table>
+      <div class="container">
+        <div class="totalDeaths"></div>
+        <div class="totalCases"></div>
+        <div class="totalRecovered"></div>
+      </div>
 
-        </tr>
-    </tbody>
-</table>
-
-<div id='bar-chart'></div>
-<br>
-<button onclick="refreshData()" class="btn btn-primary btn-block">
-    Refresh Data
-</button>
+      <br />
+      <button onclick="refreshData()" class="btn btn-primary btn-block">
+        Refresh Data
+      </button>
     </div>
-<footer>
-    
-</footer>
-<script src="https://d3js.org/d3.v5.js"></script>
-<script src="covid19.js"></script>
-</body>
+    <footer></footer>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="covid19.js"></script>
+  </body>
 </html>

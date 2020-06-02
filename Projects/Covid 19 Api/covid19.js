@@ -3,8 +3,8 @@ fetch('https://api.covid19api.com/summary')
         return response.json()
     })
     .then(data => {
-        let tableData = data.Global
-    
+        let tableData = []
+        tableData.push(data.Global)
             data = `
 
             <td>${data.Global.TotalConfirmed}</td>
@@ -15,22 +15,47 @@ fetch('https://api.covid19api.com/summary')
         let table = document.getElementById('data')
         table.innerHTML = data
 
-
         
         console.log(tableData)
-        d3.select('table')
+        d3.select('.totalCases').selectAll('div')
             .data(tableData)
             .enter()
             .append('div')
             .text(function(d) {
-                return d.TotalConfirmed
+                return d.TotalConfirmed + ':' + ' Total Cases'
             })
             .attr('class', 'bar')
             .style('width', function(d) {
-                return d.TotalConfirmed * 50 + 'px'
+                return d.TotalConfirmed / 15000 + 'px'
             })
         
+        d3.select('.totalDeaths').selectAll('div')
+            .data(tableData)
+            .enter()
+            .append('div')
+            .text(function(d) {
+                return d.TotalDeaths + ':' + ' Total Deaths'
+            })
+            .attr('class', 'bar')
+            .style('width', function(d) {
+                return d.TotalDeaths / 3000 + 'px'
+            })
+        
+        d3.select('.totalRecovered').selectAll('div')
+            .data(tableData)
+            .enter()
+            .append('div')
+            .text(function(d) {
+                return d.TotalRecovered + ':' + ' Total Recovered'
+            })
+            .attr('class', 'bar')
+            .style('width', function(d) {
+                return d.TotalRecovered / 10000 + 'px'
+            })
+        
+
     })
+
     function refreshData(){
         location.reload()
     }
