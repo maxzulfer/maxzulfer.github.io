@@ -7,7 +7,7 @@
 
   <!-- PWA -->
   <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#0a0c12" />
+  <meta name="theme-color" content="#0f1117" />
 
   <!-- iOS "Add to Home Screen" -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -19,72 +19,70 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="app-header">
-    <h1 id="app-title">Daily Workout</h1>
+  <header>
+    <h1>Daily Workout</h1>
+    <nav>
+      <button class="tab-btn active" data-tab="build">Build</button>
+      <button class="tab-btn" data-tab="today">Today</button>
+      <button class="tab-btn" data-tab="saved">Saved</button>
+      <button class="tab-btn" data-tab="history">History</button>
+    </nav>
   </header>
 
-  <main class="app-main">
+  <main>
     <!-- BUILD TAB -->
     <section id="build" class="tab active">
-      <div class="section-head">
-        <h2>Pick muscle groups</h2>
-        <p class="muted">Tap one or more. We'll build a workout that hits each muscle from multiple angles, avoiding what you trained recently.</p>
-      </div>
+      <h2>Pick muscle groups</h2>
+      <p class="muted">Tap one or more. We'll build a workout that avoids repeating what you've done recently.</p>
       <div id="muscle-grid" class="muscle-grid"></div>
 
-      <div class="card controls-card">
-        <label class="field">
-          <span class="field-label">Intensity</span>
+      <div class="controls">
+        <label>
+          Intensity
           <select id="intensity">
-            <option value="light">Light · 3 exercises / group</option>
-            <option value="normal" selected>Normal · 4 exercises / group</option>
-            <option value="heavy">Heavy · 5 exercises / group</option>
+            <option value="light">Light (3 exercises / group)</option>
+            <option value="normal" selected>Normal (4 exercises / group)</option>
+            <option value="heavy">Heavy (5 exercises / group)</option>
           </select>
         </label>
-        <button id="generate-btn" class="primary block">Generate Workout</button>
+        <button id="generate-btn" class="primary">Generate Workout</button>
       </div>
     </section>
 
     <!-- TODAY TAB -->
     <section id="today" class="tab">
-      <div id="today-empty" class="empty-state">
-        <div class="empty-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829Z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829Z"/></svg>
-        </div>
-        <h3>No workout yet</h3>
-        <p class="muted">Build one from the Build tab to get started.</p>
-        <button class="primary" data-goto="build">Build a workout</button>
+      <div id="today-empty" class="empty">
+        <p>No workout generated yet.</p>
+        <button class="link-btn" data-goto="build">Build one &rarr;</button>
       </div>
 
       <div id="today-content" class="hidden">
-        <div class="section-head">
-          <h2 id="today-title">Today's Workout</h2>
-          <p class="muted" id="today-subtitle"></p>
-        </div>
+        <h2 id="today-title">Today's Workout</h2>
+        <p class="muted" id="today-subtitle"></p>
 
+        <!-- Session timer + rest timer -->
         <div class="timer-bar">
           <div class="timer-block">
             <div class="timer-label">Session</div>
             <div class="timer-value" id="session-timer">00:00</div>
             <div class="timer-actions">
-              <button id="session-start" class="pill">Start</button>
-              <button id="session-reset" class="pill subtle">Reset</button>
+              <button id="session-start">Start</button>
+              <button id="session-reset">Reset</button>
             </div>
           </div>
           <div class="timer-block">
             <div class="timer-label">Rest</div>
             <div class="timer-value" id="rest-timer">0:00</div>
             <div class="timer-actions">
-              <button data-rest="60" class="pill">60s</button>
-              <button data-rest="90" class="pill">90s</button>
-              <button data-rest="120" class="pill">2m</button>
-              <button id="rest-stop" class="pill subtle">Stop</button>
+              <button data-rest="60">60s</button>
+              <button data-rest="90">90s</button>
+              <button data-rest="120">2m</button>
+              <button id="rest-stop">Stop</button>
             </div>
           </div>
         </div>
 
         <div id="today-list"></div>
-
         <div class="actions">
           <button id="regen-btn">Regenerate</button>
           <button id="save-btn">Save Workout</button>
@@ -95,18 +93,14 @@
 
     <!-- SAVED TAB -->
     <section id="saved" class="tab">
-      <div class="section-head">
-        <h2>Saved Workouts</h2>
-        <p class="muted">Tap <strong>Use</strong> to load a saved routine as today's workout.</p>
-      </div>
+      <h2>Saved Workouts</h2>
+      <p class="muted">Tap <strong>Use</strong> to load a saved routine as today's workout.</p>
       <div id="saved-list"></div>
     </section>
 
     <!-- HISTORY TAB -->
     <section id="history" class="tab">
-      <div class="section-head">
-        <h2>History</h2>
-      </div>
+      <h2>History</h2>
       <div id="history-stats" class="stats"></div>
       <div id="history-list"></div>
       <div class="actions">
@@ -115,25 +109,6 @@
       </div>
     </section>
   </main>
-
-  <nav class="tabbar" role="tablist">
-    <button class="tab-btn active" data-tab="build" aria-label="Build">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      <span>Build</span>
-    </button>
-    <button class="tab-btn" data-tab="today" aria-label="Today">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11"/><path d="M6.5 17.5h11"/><rect x="2" y="9" width="3" height="6" rx="1"/><rect x="19" y="9" width="3" height="6" rx="1"/><rect x="5" y="7" width="2" height="10" rx="0.5"/><rect x="17" y="7" width="2" height="10" rx="0.5"/></svg>
-      <span>Today</span>
-    </button>
-    <button class="tab-btn" data-tab="saved" aria-label="Saved">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"/></svg>
-      <span>Saved</span>
-    </button>
-    <button class="tab-btn" data-tab="history" aria-label="History">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.74 9.74 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
-      <span>History</span>
-    </button>
-  </nav>
 
   <script src="app.js"></script>
   <script>
