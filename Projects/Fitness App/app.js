@@ -3,95 +3,206 @@
 // Each entry: { name, sets, reps } — the sets/reps keep the stimulus
 // consistent even when the specific exercise varies day-to-day.
 // ==========================================
+// Each exercise has: name, default sets/reps (used for "mixed" focus), and
+// a `rep` tag so the session focus can override sets/reps appropriately:
+//   "strength" / "compound" → heavy loads, low reps
+//   "iso"                   → isolation, moderate-high reps
+//   "time"                  → duration/hold-based (plank etc.); focus ignored
 const EXERCISES = {
   chest: [
-    { name: "Barbell Bench Press",    sets: 4, reps: "6-8"   },
-    { name: "Dumbbell Bench Press",   sets: 4, reps: "8-10"  },
-    { name: "Incline Dumbbell Press", sets: 3, reps: "8-12"  },
-    { name: "Incline Barbell Press",  sets: 4, reps: "6-8"   },
-    { name: "Dumbbell Flyes",         sets: 3, reps: "10-12" },
-    { name: "Cable Crossover",        sets: 3, reps: "12-15" },
-    { name: "Push-ups",               sets: 3, reps: "AMRAP" },
-    { name: "Dips (Chest Lean)",      sets: 3, reps: "8-12"  },
-    { name: "Machine Chest Press",    sets: 3, reps: "10-12" },
-    { name: "Pec Deck",               sets: 3, reps: "12-15" },
+    { name: "Barbell Bench Press",         sets: 4, reps: "6-8",   rep: "compound" },
+    { name: "Dumbbell Bench Press",        sets: 4, reps: "8-10",  rep: "compound" },
+    { name: "Incline Dumbbell Press",      sets: 3, reps: "8-12",  rep: "compound" },
+    { name: "Incline Barbell Press",       sets: 4, reps: "6-8",   rep: "compound" },
+    { name: "Decline Barbell Press",       sets: 3, reps: "6-8",   rep: "compound" },
+    { name: "Low-Incline Dumbbell Press",  sets: 3, reps: "8-10",  rep: "compound" },
+    { name: "Paused Bench Press",          sets: 4, reps: "5-6",   rep: "compound" },
+    { name: "Dumbbell Flyes",              sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Incline Dumbbell Flyes",      sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Cable Crossover",             sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Low-to-High Cable Flye",      sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "High-to-Low Cable Flye",      sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Single-Arm Cable Flye",       sets: 3, reps: "10/side", rep: "iso"   },
+    { name: "Push-ups",                    sets: 3, reps: "AMRAP", rep: "compound" },
+    { name: "Archer Push-ups",             sets: 3, reps: "6/side", rep: "compound" },
+    { name: "Deficit Push-ups",            sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Dips (Chest Lean)",           sets: 3, reps: "8-12",  rep: "compound" },
+    { name: "Machine Chest Press",         sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Svend Press",                 sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Pec Deck",                    sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Landmine Chest Press",        sets: 3, reps: "10-12", rep: "compound" },
   ],
   back: [
-    { name: "Deadlift",               sets: 4, reps: "5"     },
-    { name: "Pull-ups",               sets: 4, reps: "AMRAP" },
-    { name: "Barbell Row",            sets: 4, reps: "6-8"   },
-    { name: "Dumbbell Row",           sets: 3, reps: "8-10"  },
-    { name: "Lat Pulldown",           sets: 3, reps: "10-12" },
-    { name: "Seated Cable Row",       sets: 3, reps: "10-12" },
-    { name: "T-Bar Row",              sets: 3, reps: "8-10"  },
-    { name: "Chin-ups",               sets: 3, reps: "AMRAP" },
-    { name: "Face Pulls",             sets: 3, reps: "12-15" },
-    { name: "Straight-arm Pulldown",  sets: 3, reps: "12-15" },
+    { name: "Deadlift",                    sets: 4, reps: "5",     rep: "compound" },
+    { name: "Deficit Deadlift",            sets: 4, reps: "5",     rep: "compound" },
+    { name: "Sumo Deadlift",               sets: 4, reps: "5",     rep: "compound" },
+    { name: "Rack Pull",                   sets: 4, reps: "5-6",   rep: "compound" },
+    { name: "Pull-ups",                    sets: 4, reps: "AMRAP", rep: "compound" },
+    { name: "Wide-Grip Pull-ups",          sets: 4, reps: "AMRAP", rep: "compound" },
+    { name: "Neutral-Grip Pull-ups",       sets: 4, reps: "AMRAP", rep: "compound" },
+    { name: "Chin-ups",                    sets: 3, reps: "AMRAP", rep: "compound" },
+    { name: "Barbell Row",                 sets: 4, reps: "6-8",   rep: "compound" },
+    { name: "Pendlay Row",                 sets: 4, reps: "5-6",   rep: "compound" },
+    { name: "Yates Row",                   sets: 3, reps: "8-10",  rep: "compound" },
+    { name: "Dumbbell Row",                sets: 3, reps: "8-10",  rep: "compound" },
+    { name: "Chest-Supported Dumbbell Row", sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Meadows Row",                 sets: 3, reps: "8-10/side", rep: "compound" },
+    { name: "T-Bar Row",                   sets: 3, reps: "8-10",  rep: "compound" },
+    { name: "Seated Cable Row",            sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Wide-Grip Cable Row",         sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Lat Pulldown",                sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Wide-Grip Lat Pulldown",      sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Reverse-Grip Pulldown",       sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Straight-arm Pulldown",       sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Face Pulls",                  sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Kroc Row",                    sets: 2, reps: "15-20/side", rep: "compound" },
+    { name: "Good Mornings",               sets: 3, reps: "8-10",  rep: "compound" },
+    { name: "Hyperextensions",             sets: 3, reps: "12-15", rep: "iso"     },
   ],
   shoulders: [
-    { name: "Overhead Press",         sets: 4, reps: "6-8"   },
-    { name: "Seated Dumbbell Press",  sets: 4, reps: "8-10"  },
-    { name: "Arnold Press",           sets: 3, reps: "8-10"  },
-    { name: "Lateral Raises",         sets: 4, reps: "12-15" },
-    { name: "Cable Lateral Raise",    sets: 3, reps: "12-15" },
-    { name: "Rear Delt Flyes",        sets: 3, reps: "12-15" },
-    { name: "Reverse Pec Deck",       sets: 3, reps: "12-15" },
-    { name: "Front Raises",           sets: 3, reps: "10-12" },
-    { name: "Upright Row",            sets: 3, reps: "10-12" },
-    { name: "Landmine Press",         sets: 3, reps: "8-10"  },
+    { name: "Overhead Press",              sets: 4, reps: "6-8",   rep: "compound" },
+    { name: "Push Press",                  sets: 4, reps: "5-6",   rep: "compound" },
+    { name: "Seated Barbell Press",        sets: 4, reps: "6-8",   rep: "compound" },
+    { name: "Seated Dumbbell Press",       sets: 4, reps: "8-10",  rep: "compound" },
+    { name: "Arnold Press",                sets: 3, reps: "8-10",  rep: "compound" },
+    { name: "Single-Arm Landmine Press",   sets: 3, reps: "8-10/side", rep: "compound" },
+    { name: "Z-Press",                     sets: 3, reps: "8-10",  rep: "compound" },
+    { name: "Machine Shoulder Press",      sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Lateral Raises",              sets: 4, reps: "12-15", rep: "iso"     },
+    { name: "Leaning Lateral Raise",       sets: 3, reps: "12-15/side", rep: "iso" },
+    { name: "Cable Lateral Raise",         sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Machine Lateral Raise",       sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Rear Delt Flyes",             sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Reverse Pec Deck",            sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Cable Reverse Flye",          sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Front Raises",                sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Plate Front Raise",           sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Cable Front Raise",           sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Upright Row",                 sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Cable Upright Row",           sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Face Pulls",                  sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Shrugs",                      sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Dumbbell Shrugs",             sets: 3, reps: "10-12", rep: "iso"     },
   ],
   biceps: [
-    { name: "Barbell Curl",           sets: 4, reps: "8-10"  },
-    { name: "Dumbbell Curl",          sets: 3, reps: "10-12" },
-    { name: "Hammer Curl",            sets: 3, reps: "10-12" },
-    { name: "Incline Dumbbell Curl",  sets: 3, reps: "10-12" },
-    { name: "Preacher Curl",          sets: 3, reps: "10-12" },
-    { name: "Cable Curl",             sets: 3, reps: "12-15" },
-    { name: "Concentration Curl",     sets: 3, reps: "10-12" },
-    { name: "EZ-Bar Curl",            sets: 3, reps: "10-12" },
+    { name: "Barbell Curl",                sets: 4, reps: "8-10",  rep: "compound" },
+    { name: "EZ-Bar Curl",                 sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Wide-Grip Barbell Curl",      sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Close-Grip Barbell Curl",     sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Dumbbell Curl",               sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Alternating Dumbbell Curl",   sets: 3, reps: "10-12/side", rep: "iso" },
+    { name: "Hammer Curl",                 sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Cross-Body Hammer Curl",      sets: 3, reps: "10/side", rep: "iso"   },
+    { name: "Incline Dumbbell Curl",       sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Spider Curl",                 sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Preacher Curl",               sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Machine Preacher Curl",       sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Cable Curl",                  sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Cable Rope Curl",             sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Bayesian Cable Curl",         sets: 3, reps: "10-12/side", rep: "iso" },
+    { name: "Concentration Curl",          sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Zottman Curl",                sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Reverse Curl",                sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Chin-up",                     sets: 3, reps: "AMRAP", rep: "compound" },
   ],
   triceps: [
-    { name: "Close-Grip Bench",       sets: 4, reps: "8-10"  },
-    { name: "Tricep Pushdown",        sets: 3, reps: "10-12" },
-    { name: "Overhead Tricep Ext.",   sets: 3, reps: "10-12" },
-    { name: "Skull Crushers",         sets: 3, reps: "8-10"  },
-    { name: "Dips (Triceps)",         sets: 3, reps: "8-12"  },
-    { name: "Rope Pushdown",          sets: 3, reps: "12-15" },
-    { name: "Dumbbell Kickback",      sets: 3, reps: "12-15" },
-    { name: "Diamond Push-ups",       sets: 3, reps: "AMRAP" },
+    { name: "Close-Grip Bench",            sets: 4, reps: "8-10",  rep: "compound" },
+    { name: "Board Press",                 sets: 4, reps: "5-6",   rep: "compound" },
+    { name: "Dips (Triceps)",              sets: 3, reps: "8-12",  rep: "compound" },
+    { name: "Bench Dips",                  sets: 3, reps: "12-15", rep: "compound" },
+    { name: "Skull Crushers",              sets: 3, reps: "8-10",  rep: "iso"     },
+    { name: "JM Press",                    sets: 3, reps: "8-10",  rep: "iso"     },
+    { name: "Overhead Tricep Ext.",        sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Single-Arm DB Overhead Ext.", sets: 3, reps: "10-12/side", rep: "iso" },
+    { name: "Overhead Cable Ext.",         sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Tricep Pushdown",             sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Rope Pushdown",               sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "V-Bar Pushdown",              sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Reverse-Grip Pushdown",       sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Dumbbell Kickback",           sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Cable Kickback",              sets: 3, reps: "12-15/side", rep: "iso" },
+    { name: "Diamond Push-ups",            sets: 3, reps: "AMRAP", rep: "compound" },
+    { name: "Tate Press",                  sets: 3, reps: "10-12", rep: "iso"     },
   ],
   legs: [
-    { name: "Back Squat",             sets: 4, reps: "5-8"   },
-    { name: "Front Squat",            sets: 4, reps: "6-8"   },
-    { name: "Romanian Deadlift",      sets: 4, reps: "8-10"  },
-    { name: "Leg Press",              sets: 4, reps: "8-12"  },
-    { name: "Walking Lunges",         sets: 3, reps: "10/leg" },
-    { name: "Bulgarian Split Squat",  sets: 3, reps: "8/leg"  },
-    { name: "Leg Extension",          sets: 3, reps: "12-15" },
-    { name: "Leg Curl",               sets: 3, reps: "10-12" },
-    { name: "Hip Thrust",             sets: 3, reps: "8-10"  },
-    { name: "Goblet Squat",           sets: 3, reps: "10-12" },
-    { name: "Step-ups",               sets: 3, reps: "10/leg" },
+    { name: "Back Squat",                  sets: 4, reps: "5-8",   rep: "compound" },
+    { name: "High-Bar Back Squat",         sets: 4, reps: "6-8",   rep: "compound" },
+    { name: "Front Squat",                 sets: 4, reps: "6-8",   rep: "compound" },
+    { name: "Paused Squat",                sets: 4, reps: "5",     rep: "compound" },
+    { name: "Tempo Squat (3-1-1)",         sets: 3, reps: "6-8",   rep: "compound" },
+    { name: "Zercher Squat",               sets: 3, reps: "6-8",   rep: "compound" },
+    { name: "Safety-Bar Squat",            sets: 4, reps: "6-8",   rep: "compound" },
+    { name: "Romanian Deadlift",           sets: 4, reps: "8-10",  rep: "compound" },
+    { name: "Stiff-Leg Deadlift",          sets: 3, reps: "8-10",  rep: "compound" },
+    { name: "Trap-Bar Deadlift",           sets: 4, reps: "6-8",   rep: "compound" },
+    { name: "Leg Press",                   sets: 4, reps: "8-12",  rep: "compound" },
+    { name: "Single-Leg Press",            sets: 3, reps: "10-12/side", rep: "compound" },
+    { name: "Hack Squat",                  sets: 4, reps: "8-10",  rep: "compound" },
+    { name: "Pendulum Squat",              sets: 3, reps: "8-10",  rep: "compound" },
+    { name: "Walking Lunges",              sets: 3, reps: "10/leg", rep: "compound" },
+    { name: "Reverse Lunges",              sets: 3, reps: "10/leg", rep: "compound" },
+    { name: "Bulgarian Split Squat",       sets: 3, reps: "8/leg",  rep: "compound" },
+    { name: "Goblet Squat",                sets: 3, reps: "10-12", rep: "compound" },
+    { name: "Step-ups",                    sets: 3, reps: "10/leg", rep: "compound" },
+    { name: "Box Step-ups (Weighted)",     sets: 3, reps: "8/leg", rep: "compound" },
+    { name: "Leg Extension",               sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Single-Leg Extension",        sets: 3, reps: "10/side", rep: "iso"   },
+    { name: "Leg Curl",                    sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Seated Leg Curl",             sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Single-Leg Leg Curl",         sets: 3, reps: "10/side", rep: "iso"   },
+    { name: "Hip Thrust",                  sets: 3, reps: "8-10",  rep: "compound" },
+    { name: "B-Stance Hip Thrust",         sets: 3, reps: "10/side", rep: "compound" },
+    { name: "Cable Pull-through",          sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Nordic Curl",                 sets: 3, reps: "6-8",   rep: "iso"     },
+    { name: "Glute-Ham Raise",             sets: 3, reps: "8-10",  rep: "iso"     },
+    { name: "Sissy Squat",                 sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Adductor Machine",            sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Abductor Machine",            sets: 3, reps: "12-15", rep: "iso"     },
   ],
   calves: [
-    { name: "Standing Calf Raise",    sets: 4, reps: "10-12" },
-    { name: "Seated Calf Raise",      sets: 4, reps: "12-15" },
-    { name: "Donkey Calf Raise",      sets: 3, reps: "12-15" },
-    { name: "Single-Leg Calf Raise",  sets: 3, reps: "12/leg" },
-    { name: "Smith Machine Calf Raise", sets: 3, reps: "10-12" },
+    { name: "Standing Calf Raise",         sets: 4, reps: "10-12", rep: "iso"     },
+    { name: "Seated Calf Raise",           sets: 4, reps: "12-15", rep: "iso"     },
+    { name: "Donkey Calf Raise",           sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Single-Leg Calf Raise",       sets: 3, reps: "12/leg", rep: "iso"    },
+    { name: "Smith Machine Calf Raise",    sets: 3, reps: "10-12", rep: "iso"     },
+    { name: "Leg Press Calf Raise",        sets: 3, reps: "12-15", rep: "iso"     },
+    { name: "Tibialis Raise",              sets: 3, reps: "15-20", rep: "iso"     },
+    { name: "Farmer's Walk on Toes",       sets: 3, reps: "30s",   rep: "time"    },
   ],
   core: [
-    { name: "Plank",                  sets: 3, reps: "45-60s" },
-    { name: "Hanging Leg Raise",      sets: 3, reps: "10-12"  },
-    { name: "Cable Crunch",           sets: 3, reps: "12-15"  },
-    { name: "Russian Twists",         sets: 3, reps: "20 total" },
-    { name: "Ab Wheel Rollout",       sets: 3, reps: "8-10"   },
-    { name: "Bicycle Crunch",         sets: 3, reps: "20 total" },
-    { name: "Dead Bug",               sets: 3, reps: "10/side" },
-    { name: "Side Plank",             sets: 3, reps: "30s/side" },
-    { name: "Mountain Climbers",      sets: 3, reps: "30s"    },
+    { name: "Plank",                       sets: 3, reps: "45-60s", rep: "time"   },
+    { name: "Weighted Plank",              sets: 3, reps: "30-45s", rep: "time"   },
+    { name: "Side Plank",                  sets: 3, reps: "30s/side", rep: "time" },
+    { name: "RKC Plank",                   sets: 3, reps: "20-30s", rep: "time"   },
+    { name: "Hanging Leg Raise",           sets: 3, reps: "10-12",  rep: "iso"    },
+    { name: "Hanging Knee Raise",          sets: 3, reps: "12-15",  rep: "iso"    },
+    { name: "Toes-to-Bar",                 sets: 3, reps: "8-10",   rep: "iso"    },
+    { name: "Cable Crunch",                sets: 3, reps: "12-15",  rep: "iso"    },
+    { name: "Weighted Decline Crunch",     sets: 3, reps: "10-12",  rep: "iso"    },
+    { name: "Russian Twists",              sets: 3, reps: "20 total", rep: "iso"  },
+    { name: "Ab Wheel Rollout",            sets: 3, reps: "8-10",   rep: "iso"    },
+    { name: "Bicycle Crunch",              sets: 3, reps: "20 total", rep: "iso"  },
+    { name: "Dead Bug",                    sets: 3, reps: "10/side", rep: "iso"   },
+    { name: "Bird Dog",                    sets: 3, reps: "10/side", rep: "iso"   },
+    { name: "Mountain Climbers",           sets: 3, reps: "30s",    rep: "time"   },
+    { name: "Pallof Press",                sets: 3, reps: "10/side", rep: "iso"   },
+    { name: "Hollow Body Hold",            sets: 3, reps: "20-30s", rep: "time"   },
+    { name: "Copenhagen Plank",            sets: 3, reps: "20s/side", rep: "time" },
+    { name: "Landmine Twist",              sets: 3, reps: "10/side", rep: "iso"   },
+    { name: "Cable Woodchopper",           sets: 3, reps: "12/side", rep: "iso"   },
   ],
 };
+
+// Session focus: rotates automatically to vary the stimulus between workouts.
+// Applied only to exercises whose `rep` tag is "compound" or "iso" —
+// time-based (plank, etc.) stays as written.
+const FOCUS_SCHEMES = {
+  strength:    { label: "Strength",    compound: { sets: 5, reps: "4-6"   }, iso: { sets: 4, reps: "6-8"   } },
+  hypertrophy: { label: "Hypertrophy", compound: { sets: 4, reps: "8-10"  }, iso: { sets: 3, reps: "10-12" } },
+  endurance:   { label: "Endurance",   compound: { sets: 3, reps: "12-15" }, iso: { sets: 3, reps: "15-20" } },
+  mixed:       { label: "Mixed",       compound: null,                       iso: null                      },
+};
+const FOCUS_ORDER = ["strength", "hypertrophy", "endurance", "mixed"];
 
 const MUSCLE_GROUPS = Object.keys(EXERCISES);
 const INTENSITY_COUNT = { light: 3, normal: 4, heavy: 5 };
@@ -150,7 +261,16 @@ function shuffle(arr) {
   return a;
 }
 
-function pickForMuscle(muscle, count, alreadyUsed = new Set()) {
+// Apply the session focus to an exercise.  For "mixed" (or time-based
+// movements), keep the per-exercise defaults so form-driven reps still make sense.
+function applyFocus(ex, focusKey) {
+  const scheme = FOCUS_SCHEMES[focusKey] || FOCUS_SCHEMES.mixed;
+  const override = scheme[ex.rep];  // "compound" | "iso" | undefined
+  if (!override) return { name: ex.name, sets: ex.sets, reps: ex.reps, weight: "" };
+  return { name: ex.name, sets: override.sets, reps: override.reps, weight: "" };
+}
+
+function pickForMuscle(muscle, count, focusKey, alreadyUsed = new Set()) {
   const pool = EXERCISES[muscle] || [];
   if (pool.length === 0) return [];
 
@@ -160,16 +280,29 @@ function pickForMuscle(muscle, count, alreadyUsed = new Set()) {
   const fresh = available.filter(e => !recent.has(e.name));
   const stale = available.filter(e =>  recent.has(e.name));
   const ordered = [...shuffle(fresh), ...shuffle(stale)];
-  return ordered.slice(0, Math.min(count, available.length)).map(e => ({ ...e, weight: "" }));
+  return ordered
+    .slice(0, Math.min(count, available.length))
+    .map(e => applyFocus(e, focusKey));
 }
 
-function generateWorkout(muscles, intensity) {
+// Pick a focus that differs from the most recent completed workouts so the
+// rep scheme keeps rotating even if the user doesn't touch anything.
+function nextFocus() {
+  const recent = state.history.slice(0, 2).map(w => w.focus).filter(Boolean);
+  const candidates = FOCUS_ORDER.filter(f => !recent.includes(f));
+  const pool = candidates.length ? candidates : FOCUS_ORDER;
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function generateWorkout(muscles, intensity, focusKey) {
+  const focus = focusKey || nextFocus();
   const perGroup = INTENSITY_COUNT[intensity] || 4;
   const groups = {};
-  for (const m of muscles) groups[m] = pickForMuscle(m, perGroup);
+  for (const m of muscles) groups[m] = pickForMuscle(m, perGroup, focus);
   return {
     date: new Date().toISOString(),
     intensity,
+    focus,
     muscles: [...muscles],
     groups,
     sessionSeconds: 0,
@@ -181,7 +314,7 @@ function swapExercise(muscle, index) {
   const group = state.today.groups[muscle];
   if (!group || !group[index]) return;
   const usedNames = new Set(group.map(e => e.name));
-  const [replacement] = pickForMuscle(muscle, 1, usedNames);
+  const [replacement] = pickForMuscle(muscle, 1, state.today.focus, usedNames);
   if (!replacement) return; // no alternatives left in pool
   group[index] = replacement;
   saveToday();
@@ -363,8 +496,9 @@ function renderToday() {
 
   const d = new Date(state.today.date);
   $("#today-title").textContent = "Today's Workout";
+  const focusLabel = (FOCUS_SCHEMES[state.today.focus] || FOCUS_SCHEMES.mixed).label;
   $("#today-subtitle").textContent =
-    `${d.toLocaleDateString(undefined, { weekday:"long", month:"short", day:"numeric" })} · ${state.today.intensity} · ${state.today.muscles.join(", ")}`;
+    `${d.toLocaleDateString(undefined, { weekday:"long", month:"short", day:"numeric" })} · ${focusLabel} · ${state.today.intensity} · ${state.today.muscles.join(", ")}`;
 
   const list = $("#today-list");
   list.innerHTML = "";
@@ -477,7 +611,7 @@ function renderHistory() {
 
     card.innerHTML = `
       <div class="date">${dateStr}${duration}</div>
-      <div class="groups">${w.muscles.join(" · ")} <span class="muted">(${w.intensity})</span></div>
+      <div class="groups">${w.muscles.join(" · ")} <span class="muted">(${(FOCUS_SCHEMES[w.focus] || FOCUS_SCHEMES.mixed).label} · ${w.intensity})</span></div>
       <details><summary>Show exercises</summary><ul>${exItems}</ul></details>
     `;
     listEl.appendChild(card);
@@ -552,7 +686,7 @@ function init() {
   $("#regen-btn").addEventListener("click", () => {
     if (!state.today) return;
     const preservedSeconds = state.today.sessionSeconds || 0;
-    state.today = generateWorkout(state.today.muscles, state.today.intensity);
+    state.today = generateWorkout(state.today.muscles, state.today.intensity, state.today.focus);
     state.today.sessionSeconds = preservedSeconds;
     saveToday();
     renderToday();
