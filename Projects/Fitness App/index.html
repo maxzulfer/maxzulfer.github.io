@@ -2,8 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Fitness — Daily Workout</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0f1117" />
+
+  <!-- iOS "Add to Home Screen" -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Fitness" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -46,6 +58,29 @@
       <div id="today-content" class="hidden">
         <h2 id="today-title">Today's Workout</h2>
         <p class="muted" id="today-subtitle"></p>
+
+        <!-- Session timer + rest timer -->
+        <div class="timer-bar">
+          <div class="timer-block">
+            <div class="timer-label">Session</div>
+            <div class="timer-value" id="session-timer">00:00</div>
+            <div class="timer-actions">
+              <button id="session-start">Start</button>
+              <button id="session-reset">Reset</button>
+            </div>
+          </div>
+          <div class="timer-block">
+            <div class="timer-label">Rest</div>
+            <div class="timer-value" id="rest-timer">0:00</div>
+            <div class="timer-actions">
+              <button data-rest="60">60s</button>
+              <button data-rest="90">90s</button>
+              <button data-rest="120">2m</button>
+              <button id="rest-stop">Stop</button>
+            </div>
+          </div>
+        </div>
+
         <div id="today-list"></div>
         <div class="actions">
           <button id="regen-btn">Regenerate</button>
@@ -60,11 +95,19 @@
       <div id="history-stats" class="stats"></div>
       <div id="history-list"></div>
       <div class="actions">
+        <button id="export-history">Export JSON</button>
         <button id="clear-history" class="danger">Clear History</button>
       </div>
     </section>
   </main>
 
   <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(console.error);
+      });
+    }
+  </script>
 </body>
 </html>

@@ -19,6 +19,9 @@ html, body {
   color: var(--text);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   min-height: 100vh;
+  /* Respect iOS safe areas when installed as PWA */
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 header {
@@ -197,17 +200,82 @@ button.danger:hover { background: rgba(231, 76, 60, 0.1); }
 .exercise {
   display: flex;
   justify-content: space-between;
-  padding: 8px 0;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
   border-bottom: 1px solid var(--border);
   font-size: 14px;
 }
 .exercise:last-child { border-bottom: none; }
 
-.exercise .name { flex: 1; }
-.exercise .sets {
+.ex-main { flex: 1; min-width: 0; }
+.ex-name { font-size: 14px; }
+.ex-sets {
   color: var(--muted);
-  white-space: nowrap;
-  margin-left: 12px;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.ex-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.weight-input {
+  width: 72px;
+  padding: 6px 8px;
+  font-size: 13px;
+  text-align: right;
+}
+
+.swap-btn {
+  padding: 6px 10px;
+  font-size: 16px;
+  line-height: 1;
+  border-radius: 8px;
+}
+
+/* Timer bar */
+.timer-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.timer-block {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+
+.timer-label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.timer-value {
+  font-size: 26px;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  margin: 4px 0 8px;
+}
+
+.timer-actions {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.timer-actions button {
+  padding: 6px 10px;
+  font-size: 12px;
 }
 
 .actions {
