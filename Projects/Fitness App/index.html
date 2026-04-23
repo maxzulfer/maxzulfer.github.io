@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitness — Daily Workout</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Daily Workout</h1>
+    <nav>
+      <button class="tab-btn active" data-tab="build">Build</button>
+      <button class="tab-btn" data-tab="today">Today</button>
+      <button class="tab-btn" data-tab="history">History</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- BUILD TAB -->
+    <section id="build" class="tab active">
+      <h2>Pick muscle groups</h2>
+      <p class="muted">Tap one or more. We'll build a workout that avoids repeating what you've done recently.</p>
+      <div id="muscle-grid" class="muscle-grid"></div>
+
+      <div class="controls">
+        <label>
+          Intensity
+          <select id="intensity">
+            <option value="light">Light (3 exercises / group)</option>
+            <option value="normal" selected>Normal (4 exercises / group)</option>
+            <option value="heavy">Heavy (5 exercises / group)</option>
+          </select>
+        </label>
+        <button id="generate-btn" class="primary">Generate Workout</button>
+      </div>
+    </section>
+
+    <!-- TODAY TAB -->
+    <section id="today" class="tab">
+      <div id="today-empty" class="empty">
+        <p>No workout generated yet.</p>
+        <button class="link-btn" data-goto="build">Build one &rarr;</button>
+      </div>
+
+      <div id="today-content" class="hidden">
+        <h2 id="today-title">Today's Workout</h2>
+        <p class="muted" id="today-subtitle"></p>
+        <div id="today-list"></div>
+        <div class="actions">
+          <button id="regen-btn">Regenerate</button>
+          <button id="complete-btn" class="primary">Mark Complete</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORY TAB -->
+    <section id="history" class="tab">
+      <h2>History</h2>
+      <div id="history-stats" class="stats"></div>
+      <div id="history-list"></div>
+      <div class="actions">
+        <button id="clear-history" class="danger">Clear History</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
