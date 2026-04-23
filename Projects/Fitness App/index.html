@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Fitness — Daily Workout</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0f1117" />
+
+  <!-- iOS "Add to Home Screen" -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Fitness" />
+  <link rel="apple-touch-icon" href="icons/icon-180.png" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Daily Workout</h1>
+    <nav>
+      <button class="tab-btn active" data-tab="build">Build</button>
+      <button class="tab-btn" data-tab="today">Today</button>
+      <button class="tab-btn" data-tab="history">History</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- BUILD TAB -->
+    <section id="build" class="tab active">
+      <h2>Pick muscle groups</h2>
+      <p class="muted">Tap one or more. We'll build a workout that avoids repeating what you've done recently.</p>
+      <div id="muscle-grid" class="muscle-grid"></div>
+
+      <div class="controls">
+        <label>
+          Intensity
+          <select id="intensity">
+            <option value="light">Light (3 exercises / group)</option>
+            <option value="normal" selected>Normal (4 exercises / group)</option>
+            <option value="heavy">Heavy (5 exercises / group)</option>
+          </select>
+        </label>
+        <button id="generate-btn" class="primary">Generate Workout</button>
+      </div>
+    </section>
+
+    <!-- TODAY TAB -->
+    <section id="today" class="tab">
+      <div id="today-empty" class="empty">
+        <p>No workout generated yet.</p>
+        <button class="link-btn" data-goto="build">Build one &rarr;</button>
+      </div>
+
+      <div id="today-content" class="hidden">
+        <h2 id="today-title">Today's Workout</h2>
+        <p class="muted" id="today-subtitle"></p>
+
+        <!-- Session timer + rest timer -->
+        <div class="timer-bar">
+          <div class="timer-block">
+            <div class="timer-label">Session</div>
+            <div class="timer-value" id="session-timer">00:00</div>
+            <div class="timer-actions">
+              <button id="session-start">Start</button>
+              <button id="session-reset">Reset</button>
+            </div>
+          </div>
+          <div class="timer-block">
+            <div class="timer-label">Rest</div>
+            <div class="timer-value" id="rest-timer">0:00</div>
+            <div class="timer-actions">
+              <button data-rest="60">60s</button>
+              <button data-rest="90">90s</button>
+              <button data-rest="120">2m</button>
+              <button id="rest-stop">Stop</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="today-list"></div>
+        <div class="actions">
+          <button id="regen-btn">Regenerate</button>
+          <button id="complete-btn" class="primary">Mark Complete</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HISTORY TAB -->
+    <section id="history" class="tab">
+      <h2>History</h2>
+      <div id="history-stats" class="stats"></div>
+      <div id="history-list"></div>
+      <div class="actions">
+        <button id="export-history">Export JSON</button>
+        <button id="clear-history" class="danger">Clear History</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("sw.js").catch(console.error);
+      });
+    }
+  </script>
+</body>
+</html>
