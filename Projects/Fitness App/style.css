@@ -216,6 +216,13 @@ button.danger:hover { background: rgba(231, 76, 60, 0.1); }
   margin-top: 2px;
 }
 
+.ex-last {
+  color: var(--accent-2);
+  font-size: 11px;
+  margin-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+
 .ex-controls {
   display: flex;
   align-items: center;
