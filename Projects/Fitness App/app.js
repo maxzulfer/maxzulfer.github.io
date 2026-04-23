@@ -316,6 +316,23 @@ function beep() {
 const $  = sel => document.querySelector(sel);
 const $$ = sel => document.querySelectorAll(sel);
 
+// Find the most recent logged weight for an exercise across history.
+// Returns { weight, date } or null if never logged with a weight.
+function findLastWeight(exerciseName) {
+  for (const w of state.history) {
+    for (const m of w.muscles) {
+      const group = w.groups && w.groups[m];
+      if (!group) continue;
+      for (const ex of group) {
+        if (ex.name === exerciseName && ex.weight) {
+          return { weight: String(ex.weight), date: w.completedAt || w.date };
+        }
+      }
+    }
+  }
+  return null;
+}
+
 function renderMuscleGrid() {
   const grid = $("#muscle-grid");
   grid.innerHTML = "";
@@ -360,16 +377,22 @@ function renderToday() {
     block.appendChild(h3);
 
     state.today.groups[m].forEach((ex, i) => {
+      const last = findLastWeight(ex.name);
+      const lastLine = last
+        ? `<div class="ex-last">Last: ${escapeHTML(last.weight)}</div>`
+        : "";
+      const placeholder = last ? escapeHTML(last.weight) : "weight";
       const row = document.createElement("div");
       row.className = "exercise";
       row.innerHTML = `
         <div class="ex-main">
-          <div class="ex-name">${ex.name}</div>
+          <div class="ex-name">${escapeHTML(ex.name)}</div>
           <div class="ex-sets">${ex.sets} × ${ex.reps}</div>
+          ${lastLine}
         </div>
         <div class="ex-controls">
-          <input type="text" class="weight-input" placeholder="weight"
-                 value="${ex.weight ? String(ex.weight).replace(/"/g, "&quot;") : ""}"
+          <input type="text" class="weight-input" placeholder="${placeholder}"
+                 value="${ex.weight ? escapeHTML(String(ex.weight)) : ""}"
                  data-muscle="${m}" data-index="${i}" />
           <button class="swap-btn" data-muscle="${m}" data-index="${i}" title="Swap for a different exercise">↻</button>
         </div>
