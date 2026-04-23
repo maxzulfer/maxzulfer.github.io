@@ -24,6 +24,7 @@
     <nav>
       <button class="tab-btn active" data-tab="build">Build</button>
       <button class="tab-btn" data-tab="today">Today</button>
+      <button class="tab-btn" data-tab="saved">Saved</button>
       <button class="tab-btn" data-tab="history">History</button>
     </nav>
   </header>
@@ -84,9 +85,17 @@
         <div id="today-list"></div>
         <div class="actions">
           <button id="regen-btn">Regenerate</button>
+          <button id="save-btn">Save Workout</button>
           <button id="complete-btn" class="primary">Mark Complete</button>
         </div>
       </div>
+    </section>
+
+    <!-- SAVED TAB -->
+    <section id="saved" class="tab">
+      <h2>Saved Workouts</h2>
+      <p class="muted">Tap <strong>Use</strong> to load a saved routine as today's workout.</p>
+      <div id="saved-list"></div>
     </section>
 
     <!-- HISTORY TAB -->

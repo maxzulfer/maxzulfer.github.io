@@ -215,12 +215,14 @@ const STORAGE_KEYS = {
   selected: "fitness.selected",
   today:    "fitness.today",
   history:  "fitness.history",
+  saved:    "fitness.saved",
 };
 
 const state = {
   selected: new Set(loadJSON(STORAGE_KEYS.selected, [])),
   today:    loadJSON(STORAGE_KEYS.today, null),
   history:  loadJSON(STORAGE_KEYS.history, []),
+  saved:    loadJSON(STORAGE_KEYS.saved, []),
 };
 
 function loadJSON(key, fallback) {
@@ -234,6 +236,7 @@ function saveJSON(key, value) {
 }
 const saveSelected = () => saveJSON(STORAGE_KEYS.selected, [...state.selected]);
 const saveHistory  = () => saveJSON(STORAGE_KEYS.history, state.history);
+const saveSaved    = () => saveJSON(STORAGE_KEYS.saved, state.saved);
 function saveToday() {
   if (state.today) saveJSON(STORAGE_KEYS.today, state.today);
   else localStorage.removeItem(STORAGE_KEYS.today);
@@ -558,6 +561,113 @@ function renderToday() {
   updateRestDisplay();
 }
 
+// ==========================================
+// Saved workouts (templates)
+// ==========================================
+function saveCurrentWorkout() {
+  if (!state.today) return;
+  const defaultName = `${state.today.muscles.join(", ")} (${
+    (FOCUS_SCHEMES[state.today.focus] || FOCUS_SCHEMES.mixed).label
+  })`;
+  const raw = prompt("Name this workout:", defaultName);
+  if (raw === null) return;
+  const name = raw.trim() || defaultName;
+
+  // Strip per-set logged weight; keep the routine structure.
+  const groups = {};
+  for (const m of state.today.muscles) {
+    groups[m] = (state.today.groups[m] || []).map(ex => ({
+      name: ex.name, sets: ex.sets, reps: ex.reps, weight: "",
+    }));
+  }
+  state.saved.unshift({
+    id:        Date.now().toString(36),
+    name,
+    intensity: state.today.intensity,
+    focus:     state.today.focus,
+    muscles:   [...state.today.muscles],
+    groups,
+    createdAt: new Date().toISOString(),
+  });
+  saveSaved();
+  alert(`Saved "${name}"`);
+}
+
+function useSavedWorkout(id) {
+  const tpl = state.saved.find(s => s.id === id);
+  if (!tpl) return;
+  // Deep-copy so editing today doesn't mutate the template.
+  const groups = {};
+  for (const m of tpl.muscles) {
+    groups[m] = (tpl.groups[m] || []).map(ex => ({ ...ex, weight: "" }));
+  }
+  state.today = {
+    date: new Date().toISOString(),
+    intensity: tpl.intensity,
+    focus:     tpl.focus,
+    muscles:   [...tpl.muscles],
+    groups,
+    sessionSeconds: 0,
+    fromSaved: tpl.id,
+  };
+  saveToday();
+  // Reset session timer for fresh session.
+  timers.sessionOffset = 0;
+  timers.sessionStart  = null;
+  stopRest();
+  showTab("today");
+}
+
+function deleteSavedWorkout(id) {
+  const tpl = state.saved.find(s => s.id === id);
+  if (!tpl) return;
+  if (!confirm(`Delete "${tpl.name}"?`)) return;
+  state.saved = state.saved.filter(s => s.id !== id);
+  saveSaved();
+  renderSaved();
+}
+
+function renderSaved() {
+  const listEl = $("#saved-list");
+  listEl.innerHTML = "";
+
+  if (state.saved.length === 0) {
+    const p = document.createElement("p");
+    p.className = "muted";
+    p.textContent = "No saved workouts yet. Build one in the Today tab and tap Save Workout.";
+    listEl.appendChild(p);
+    return;
+  }
+
+  for (const tpl of state.saved) {
+    const card = document.createElement("div");
+    card.className = "history-card";
+    const focusLabel = (FOCUS_SCHEMES[tpl.focus] || FOCUS_SCHEMES.mixed).label;
+    const items = tpl.muscles.flatMap(m =>
+      (tpl.groups[m] || []).map(ex =>
+        `<li>${escapeHTML(m)}: ${escapeHTML(ex.name)} — ${ex.sets}×${escapeHTML(String(ex.reps))}</li>`
+      )
+    ).join("");
+    card.innerHTML = `
+      <div class="date">${escapeHTML(tpl.muscles.join(" · "))} <span class="muted">(${escapeHTML(focusLabel)} · ${escapeHTML(tpl.intensity)})</span></div>
+      <div class="groups"><strong>${escapeHTML(tpl.name)}</strong></div>
+      <details><summary>Show exercises</summary><ul>${items}</ul></details>
+      <div class="actions" style="margin-top:10px;">
+        <button class="primary" data-use="${tpl.id}">Use</button>
+        <button class="danger" data-delete="${tpl.id}">Delete</button>
+      </div>
+    `;
+    listEl.appendChild(card);
+  }
+
+  listEl.querySelectorAll("[data-use]").forEach(btn => {
+    btn.addEventListener("click", () => useSavedWorkout(btn.dataset.use));
+  });
+  listEl.querySelectorAll("[data-delete]").forEach(btn => {
+    btn.addEventListener("click", () => deleteSavedWorkout(btn.dataset.delete));
+  });
+}
+
 function renderHistory() {
   const statsEl = $("#history-stats");
   const listEl  = $("#history-list");
@@ -634,6 +744,7 @@ function showTab(name) {
   $$(".tab").forEach(el => el.classList.toggle("active", el.id === name));
   $$(".tab-btn").forEach(el => el.classList.toggle("active", el.dataset.tab === name));
   if (name === "today")   renderToday();
+  if (name === "saved")   renderSaved();
   if (name === "history") renderHistory();
 }
 
@@ -691,6 +802,8 @@ function init() {
     saveToday();
     renderToday();
   });
+
+  $("#save-btn").addEventListener("click", saveCurrentWorkout);
 
   $("#complete-btn").addEventListener("click", () => {
     if (!state.today) return;
