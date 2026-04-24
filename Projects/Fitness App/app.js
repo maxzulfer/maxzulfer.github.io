@@ -342,6 +342,13 @@ function generateWorkout(muscles, intensity, focusKey) {
   };
 }
 
+// Open a YouTube search for an exercise in a new tab — cheapest way to show
+// users what an unfamiliar movement looks like.
+function openExerciseVideo(exerciseName) {
+  const q = encodeURIComponent(`${exerciseName} form`);
+  window.open(`https://www.youtube.com/results?search_query=${q}`, "_blank", "noopener");
+}
+
 function swapExercise(muscle, index) {
   if (!state.today) return;
   const group = state.today.groups[muscle];
@@ -401,12 +408,15 @@ function openPicker(muscle, index) {
     list.appendChild(hdr);
 
     for (const ex of byPattern[pat]) {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "picker-option";
+      const row = document.createElement("div");
+      row.className = "picker-row";
+
       const isCurrent = ex.name === currentName;
       const isUsedElsewhere = usedNames.has(ex.name) && !isCurrent;
 
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "picker-option";
       if (isCurrent) btn.classList.add("current");
       if (isUsedElsewhere) btn.disabled = true;
 
@@ -424,7 +434,20 @@ function openPicker(muscle, index) {
         btn.addEventListener("click", closePicker);
       }
 
-      list.appendChild(btn);
+      const info = document.createElement("button");
+      info.type = "button";
+      info.className = "picker-info";
+      info.title = "Watch form on YouTube";
+      info.setAttribute("aria-label", `Watch ${ex.name} on YouTube`);
+      info.textContent = "▶";
+      info.addEventListener("click", (e) => {
+        e.stopPropagation();
+        openExerciseVideo(ex.name);
+      });
+
+      row.appendChild(btn);
+      row.appendChild(info);
+      list.appendChild(row);
     }
   }
 
@@ -638,7 +661,10 @@ function renderToday() {
       row.className = "exercise";
       row.innerHTML = `
         <div class="ex-main">
-          <div class="ex-name">${escapeHTML(ex.name)}</div>
+          <button type="button" class="ex-name ex-name-link" data-name="${escapeHTML(ex.name)}" title="Watch form on YouTube">
+            ${escapeHTML(ex.name)}
+            <span class="ex-name-icon" aria-hidden="true">▶</span>
+          </button>
           <div class="ex-sets">${ex.sets} × ${ex.reps}</div>
           ${lastLine}
         </div>
@@ -678,6 +704,9 @@ function renderToday() {
       const i  = Number(btn.dataset.index);
       openPicker(mm, i);
     });
+  });
+  list.querySelectorAll(".ex-name-link").forEach(btn => {
+    btn.addEventListener("click", () => openExerciseVideo(btn.dataset.name));
   });
 
   updateSessionDisplay();
