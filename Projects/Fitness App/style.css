@@ -223,24 +223,15 @@ button.danger:hover { background: rgba(231, 76, 60, 0.1); }
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 .ex-name-link:hover { color: var(--accent); }
 .ex-name-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: rgba(231, 76, 60, 0.18);
-  color: #ff5a4f;
-  font-size: 9px;
-  line-height: 1;
-  padding-left: 2px; /* visually center the triangle */
-  flex-shrink: 0;
+  font-size: 10px;
+  color: var(--muted);
+  opacity: 0.7;
 }
-.ex-name-link:hover .ex-name-icon { background: rgba(231, 76, 60, 0.3); }
+.ex-name-link:hover .ex-name-icon { color: var(--accent); opacity: 1; }
 .ex-sets {
   color: var(--muted);
   font-size: 12px;
