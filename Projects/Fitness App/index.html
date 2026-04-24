@@ -110,6 +110,18 @@
     </section>
   </main>
 
+  <!-- Exercise picker modal -->
+  <div id="picker" class="picker hidden" role="dialog" aria-modal="true" aria-labelledby="picker-title">
+    <div class="picker-backdrop" data-picker-close></div>
+    <div class="picker-sheet" role="document">
+      <div class="picker-header">
+        <h3 id="picker-title">Choose an exercise</h3>
+        <button class="picker-close" data-picker-close aria-label="Close">✕</button>
+      </div>
+      <div class="picker-list" id="picker-list"></div>
+    </div>
+  </div>
+
   <script src="app.js"></script>
   <script>
     if ("serviceWorker" in navigator) {

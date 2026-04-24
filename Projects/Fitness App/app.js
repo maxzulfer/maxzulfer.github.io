@@ -354,6 +354,91 @@ function swapExercise(muscle, index) {
   renderToday();
 }
 
+// Replace the exercise at (muscle, index) with a specific named exercise from the pool.
+function replaceExerciseWith(muscle, index, exerciseName) {
+  if (!state.today) return;
+  const group = state.today.groups[muscle];
+  if (!group || !group[index]) return;
+  const template = (EXERCISES[muscle] || []).find(e => e.name === exerciseName);
+  if (!template) return;
+  group[index] = applyFocus(template, state.today.focus);
+  saveToday();
+  renderToday();
+}
+
+// ==========================================
+// Exercise picker modal
+// ==========================================
+const picker = { muscle: null, index: null };
+
+function openPicker(muscle, index) {
+  if (!state.today) return;
+  picker.muscle = muscle;
+  picker.index  = index;
+
+  const pool = EXERCISES[muscle] || [];
+  const currentName = (state.today.groups[muscle] || [])[index]?.name;
+  const usedNames = new Set((state.today.groups[muscle] || []).map(e => e.name));
+
+  // Group by movement pattern for easier browsing.
+  const byPattern = {};
+  for (const ex of pool) {
+    const key = ex.pattern || "other";
+    (byPattern[key] = byPattern[key] || []).push(ex);
+  }
+
+  const title = document.getElementById("picker-title");
+  title.textContent = `Choose a ${muscle} exercise`;
+
+  const list = document.getElementById("picker-list");
+  list.innerHTML = "";
+
+  const patternOrder = Object.keys(byPattern).sort();
+  for (const pat of patternOrder) {
+    const hdr = document.createElement("div");
+    hdr.className = "picker-section";
+    hdr.textContent = pat.replace(/-/g, " ");
+    list.appendChild(hdr);
+
+    for (const ex of byPattern[pat]) {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "picker-option";
+      const isCurrent = ex.name === currentName;
+      const isUsedElsewhere = usedNames.has(ex.name) && !isCurrent;
+
+      if (isCurrent) btn.classList.add("current");
+      if (isUsedElsewhere) btn.disabled = true;
+
+      const suffix = isCurrent ? "Current"
+                   : isUsedElsewhere ? "In workout"
+                   : `${ex.sets} × ${ex.reps}`;
+      btn.innerHTML = `<span>${escapeHTML(ex.name)}</span><span class="meta">${escapeHTML(suffix)}</span>`;
+
+      if (!btn.disabled && !isCurrent) {
+        btn.addEventListener("click", () => {
+          replaceExerciseWith(picker.muscle, picker.index, ex.name);
+          closePicker();
+        });
+      } else if (isCurrent) {
+        btn.addEventListener("click", closePicker);
+      }
+
+      list.appendChild(btn);
+    }
+  }
+
+  document.getElementById("picker").classList.remove("hidden");
+  document.body.style.overflow = "hidden";
+}
+
+function closePicker() {
+  document.getElementById("picker").classList.add("hidden");
+  document.body.style.overflow = "";
+  picker.muscle = null;
+  picker.index  = null;
+}
+
 // ==========================================
 // Streak: consecutive days with a completed workout, ending today or yesterday.
 // ==========================================
@@ -561,6 +646,7 @@ function renderToday() {
           <input type="text" class="weight-input" placeholder="${placeholder}"
                  value="${ex.weight ? escapeHTML(String(ex.weight)) : ""}"
                  data-muscle="${m}" data-index="${i}" />
+          <button class="pick-btn" data-muscle="${m}" data-index="${i}" title="Pick a specific exercise">✎</button>
           <button class="swap-btn" data-muscle="${m}" data-index="${i}" title="Swap for a different exercise">↻</button>
         </div>
       `;
@@ -584,6 +670,13 @@ function renderToday() {
       const mm = btn.dataset.muscle;
       const i  = Number(btn.dataset.index);
       swapExercise(mm, i);
+    });
+  });
+  list.querySelectorAll(".pick-btn").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const mm = btn.dataset.muscle;
+      const i  = Number(btn.dataset.index);
+      openPicker(mm, i);
     });
   });
 
@@ -870,6 +963,14 @@ function init() {
     renderHistory();
   });
   $("#export-history").addEventListener("click", exportHistory);
+
+  // Picker dismissal
+  $$("[data-picker-close]").forEach(el => el.addEventListener("click", closePicker));
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !document.getElementById("picker").classList.contains("hidden")) {
+      closePicker();
+    }
+  });
 
   renderToday();
 }
